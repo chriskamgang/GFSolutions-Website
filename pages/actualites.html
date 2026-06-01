@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités – GFS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <style>
+    .news-full-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:32px; }
+    .news-full-card { background:var(--white); border-radius:var(--radius); overflow:hidden; border:1.5px solid var(--gray-200); box-shadow:var(--shadow); transition:var(--transition); }
+    .news-full-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--primary); }
+    .nfc-thumb { height:200px; display:flex; align-items:flex-end; padding:16px; }
+    .nfc-tag { font-size:11px; font-weight:800; padding:4px 12px; border-radius:20px; background:var(--accent); color:var(--primary); text-transform:uppercase; }
+    .nfc-body { padding:20px; }
+    .nfc-date { font-size:12.5px; color:var(--gray-500); margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+    .nfc-body h3 { font-size:16px; font-weight:700; color:var(--primary); margin-bottom:10px; line-height:1.4; }
+    .nfc-body p { font-size:13.5px; color:var(--gray-600); line-height:1.6; margin-bottom:14px; }
+    .nfc-more { display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:700; color:var(--primary); }
+    .nfc-more:hover { color:var(--accent); }
+    .news-cats { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+    .cat-btn { padding:8px 18px; border-radius:20px; font-size:13px; font-weight:600; color:var(--gray-600); background:var(--white); border:1.5px solid var(--gray-200); cursor:pointer; transition:var(--transition); }
+    .cat-btn.active, .cat-btn:hover { background:var(--primary); color:var(--white); border-color:var(--primary); }
+    @media(max-width:1024px){ .news-full-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){ .news-full-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero" style="background:linear-gradient(135deg,#1B2A4A 0%,#2d4a8a 100%)">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Actualités</span></div>
+    <h1><i class="fas fa-newspaper"></i> Actualités GFS</h1>
+    <p>Les dernières nouvelles de Global Financial Solution et du secteur de la microfinance au Cameroun.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="news-cats">
+      <button class="cat-btn active">Toutes</button>
+      <button class="cat-btn">Innovation</button>
+      <button class="cat-btn">Crédit</button>
+      <button class="cat-btn">Réseau</button>
+      <button class="cat-btn">Partenariat</button>
+      <button class="cat-btn">Finance inclusive</button>
+    </div>
+
+    <div class="news-full-grid">
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#1B2A4A,#2d4a8a)">
+          <span class="nfc-tag">Innovation</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 20 Mai 2026</div>
+          <h3>GFS lance son application mobile Android avec authentification biométrique</h3>
+          <p>Notre nouvelle application permet d'effectuer des transactions sécurisées depuis n'importe où au Cameroun, même avec une connexion limitée.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#F5A623,#e8940f)">
+          <span class="nfc-tag">Crédit</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 15 Mai 2026</div>
+          <h3>Crédit Scolarité : 0% d'intérêts les 3 premiers mois</h3>
+          <p>Pour soutenir les familles camerounaises à la rentrée scolaire, GFS lance une offre promotionnelle sans intérêts sur les 3 premiers mois du Crédit Scolarité.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#27ae60,#1e8449)">
+          <span class="nfc-tag">Réseau</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 8 Mai 2026</div>
+          <h3>GFS ouvre sa 12ème agence à Ngaoundéré</h3>
+          <p>En expansion continue dans la région Adamaoua, GFS inaugure son 12ème point de service dans la capitale régionale de Ngaoundéré.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#8e44ad,#6c3483)">
+          <span class="nfc-tag">Partenariat</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 1 Mai 2026</div>
+          <h3>Partenariat GFS – MTN Mobile Money : transferts sans frais</h3>
+          <p>GFS et MTN Cameroun s'associent pour offrir des transferts d'argent sans frais entre les comptes GFS et les portefeuilles MTN MoMo.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">
+          <span class="nfc-tag">Finance inclusive</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 22 Avril 2026</div>
+          <h3>GFS Finance Agricole soutient 500 coopératives dans l'Ouest</h3>
+          <p>Un programme de financement agricole doté de 500 millions FCFA pour accompagner les producteurs de cacao et de café de la région Ouest.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="news-full-card">
+        <div class="nfc-thumb" style="background:linear-gradient(135deg,#2980b9,#1a5276)">
+          <span class="nfc-tag">Innovation</span>
+        </div>
+        <div class="nfc-body">
+          <div class="nfc-date"><i class="fas fa-calendar-alt"></i> 10 Avril 2026</div>
+          <h3>GFS déploie le paiement par QR Code dans 50 nouveaux marchés</h3>
+          <p>La solution de paiement QR Code GFS est désormais disponible dans 50 marchés supplémentaires à Douala et Yaoundé, permettant aux commerçants informels d'accepter des paiements digitaux.</p>
+          <a href="#" class="nfc-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/pages.js"></script>
+</body>
+</html>

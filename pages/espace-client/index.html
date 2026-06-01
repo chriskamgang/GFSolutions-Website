@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1 id="greetingTitle">Tableau de bord</h1>
+      <p id="greetingDate"></p>
+    </div>
+    <div class="cp-topbar-actions">
+      <div class="cp-notif-btn" id="notifBtn" title="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="cp-notif-badge" id="notifBadge" style="display:none">0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <!-- KPIs -->
+    <div class="cp-kpi-grid" id="kpiGrid">
+      <div class="cp-kpi"><div class="cp-kpi-icon blue"><i class="fas fa-wallet"></i></div><div class="cp-kpi-info"><label>Solde Total</label><strong id="kpiSolde">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon orange"><i class="fas fa-university"></i></div><div class="cp-kpi-info"><label>Comptes Actifs</label><strong id="kpiComptes">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon green"><i class="fas fa-hand-holding-usd"></i></div><div class="cp-kpi-info"><label>Crédits Actifs</label><strong id="kpiCredits">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon blue"><i class="fas fa-exchange-alt"></i></div><div class="cp-kpi-info"><label>Dernière Opération</label><strong id="kpiDerniereTx" style="font-size:13px;">–</strong></div></div>
+    </div>
+
+    <!-- Mes comptes -->
+    <div class="cp-section-header">
+      <h2><i class="fas fa-university" style="color:var(--cp-accent);margin-right:8px;"></i> Mes Comptes</h2>
+      <a href="comptes.html">Voir tous <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="cp-accounts-grid" id="accountsGrid">
+      <div class="cp-loading"><div class="cp-spinner"></div> Chargement...</div>
+    </div>
+
+    <!-- Dernières transactions -->
+    <div class="cp-section-header">
+      <h2><i class="fas fa-exchange-alt" style="color:var(--cp-accent);margin-right:8px;"></i> Dernières Transactions</h2>
+      <a href="transactions.html">Voir tout <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="cp-card">
+      <div style="overflow-x:auto;">
+        <table class="cp-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Compte</th>
+              <th>Montant</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="txBody">
+            <tr><td colspan="5" class="cp-loading"><div class="cp-spinner"></div> Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+
+renderSidebar('index');
+fillClientHeader();
+
+// Date du jour
+const now = new Date();
+document.getElementById('greetingDate').textContent =
+  now.toLocaleDateString('fr-CM', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+const client = getClient();
+if (client) {
+  document.getElementById('greetingTitle').textContent =
+    'Bonjour, ' + ((client.firstName || '') + ' ' + (client.lastName || '')).trim().split(' ')[0] + ' 👋';
+}
+
+async function loadDashboard() {
+  try {
+    const [accounts, txData, credits] = await Promise.all([
+      api('/client-auth/accounts'),
+      api('/client-auth/transactions?limit=8'),
+      api('/client-auth/credits'),
+    ]);
+
+    // KPIs
+    const activeAccounts = (accounts || []).filter(a => a.status === 'ACTIVE');
+    const totalBalance = activeAccounts.reduce((s, a) => s + (parseFloat(a.balance) || 0), 0);
+    const activeCredits = (credits || []).filter(c => c.status === 'ACTIVE' || c.status === 'DISBURSED');
+
+    document.getElementById('kpiSolde').textContent = fmt(totalBalance);
+    document.getElementById('kpiComptes').textContent = activeAccounts.length;
+    document.getElementById('kpiCredits').textContent = activeCredits.length;
+
+    const txList = txData && txData.data ? txData.data : (txData || []);
+    if (txList.length > 0) {
+      const last = txList[0];
+      document.getElementById('kpiDerniereTx').textContent = fmtDate(last.createdAt);
+    }
+
+    // Comptes
+    const grid = document.getElementById('accountsGrid');
+    if (!activeAccounts.length) {
+      grid.innerHTML = '<div class="cp-empty"><i class="fas fa-university"></i><p>Aucun compte actif</p></div>';
+    } else {
+      grid.innerHTML = activeAccounts.slice(0, 3).map(a => {
+        const typeClass = { EPARGNE:'epargne', DAT:'dat', ENTREPRISE:'entreprise' }[a.type] || '';
+        return '<div class="cp-account-card ' + typeClass + '" onclick="location.href=\'comptes.html\'">'
+          + '<div class="cp-acc-type">' + accountTypeLabel(a.type) + '</div>'
+          + '<div class="cp-acc-number">' + (a.accountNumber || a.id.slice(0,8).toUpperCase()) + '</div>'
+          + '<div class="cp-acc-balance">' + fmt(a.balance) + '</div>'
+          + '<div class="cp-acc-footer">'
+          +   '<span class="cp-acc-status active">Actif</span>'
+          +   '<span class="cp-acc-badge"><i class="fas fa-chevron-right"></i></span>'
+          + '</div></div>';
+      }).join('');
+    }
+
+    // Transactions
+    const tbody = document.getElementById('txBody');
+    if (!txList.length) {
+      tbody.innerHTML = '<tr><td colspan="5"><div class="cp-empty"><i class="fas fa-exchange-alt"></i><p>Aucune transaction</p></div></td></tr>';
+    } else {
+      tbody.innerHTML = txList.slice(0, 8).map(tx => {
+        const isCredit = ['DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'].includes(tx.type);
+        const sign = isCredit ? '+' : '-';
+        const cls = isCredit ? 'credit' : 'debit';
+        const accountNum = tx.account ? (tx.account.accountNumber || tx.accountId.slice(0,8)) : '–';
+        return '<tr>'
+          + '<td><div style="display:flex;align-items:center;gap:10px;">'
+          +   '<div class="cp-tx-icon ' + cls + '"><i class="fas ' + (isCredit ? 'fa-arrow-down' : 'fa-arrow-up') + '"></i></div>'
+          +   '<span class="cp-tx-label">' + txLabel(tx.type) + '</span>'
+          + '</div></td>'
+          + '<td><div class="cp-tx-ref">' + (tx.description || tx.reference || '–') + '</div></td>'
+          + '<td style="font-size:12px;color:var(--cp-gray-600);">' + accountNum + '</td>'
+          + '<td><span class="cp-tx-amount ' + cls + '">' + sign + fmt(tx.amount) + '</span></td>'
+          + '<td class="cp-tx-date">' + fmtDate(tx.createdAt) + '</td>'
+          + '</tr>';
+      }).join('');
+    }
+  } catch(e) {
+    document.getElementById('accountsGrid').innerHTML =
+      '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div>';
+  }
+}
+
+loadDashboard();
+
+// Notifications
+api('/client-auth/notifications?limit=5').then(data => {
+  const notifs = data || [];
+  const unread = notifs.filter(n => !n.isRead).length;
+  const badge = document.getElementById('notifBadge');
+  if (unread > 0) { badge.textContent = unread; badge.style.display = 'flex'; }
+}).catch(() => {});
+</script>
+</body>
+</html>

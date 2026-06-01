@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <rect width="80" height="80" rx="16" fill="#1B2A4A"/>
+  <!-- Arc décoratif -->
+  <path d="M20 52 Q40 18 60 52" stroke="#F5A623" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Point central -->
+  <circle cx="40" cy="50" r="4" fill="#F5A623"/>
+  <!-- Texte GFS -->
+  <text x="40" y="70" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="Arial, sans-serif" letter-spacing="1">GFS</text>
+</svg>

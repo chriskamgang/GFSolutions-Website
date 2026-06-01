@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nos Agences & GAB – GFS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero" style="background:linear-gradient(135deg,#0f1a30 0%,#1B2A4A 100%)">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Nos Agences</span></div>
+    <h1><i class="fas fa-map-marker-alt"></i> Notre Réseau d'Agences, GAB et TPE</h1>
+    <p>Nous sommes plus proches de vous que vous ne le pensez !</p>
+  </div>
+</section>
+
+<!-- HORAIRES -->
+<section class="section">
+  <div class="container">
+    <div class="info-banner">
+      <i class="fas fa-clock"></i>
+      <div>
+        <strong>Horaires d'ouverture GFS Cameroun</strong>
+        <span>Les agences du réseau GFS sont ouvertes du <strong>Lundi au Vendredi de 8h00 à 17h00</strong> | Samedi de 9h00 à 13h00</span>
+      </div>
+    </div>
+
+    <!-- STATS RÉSEAU -->
+    <div class="network-stats">
+      <div class="ns-item"><div class="ns-icon"><i class="fas fa-building"></i></div><strong>12</strong><span>Agences</span></div>
+      <div class="ns-item"><div class="ns-icon"><i class="fas fa-credit-card"></i></div><strong>45+</strong><span>GAB / ATM</span></div>
+      <div class="ns-item"><div class="ns-icon"><i class="fas fa-store"></i></div><strong>300+</strong><span>Points TPE Marchands</span></div>
+      <div class="ns-item"><div class="ns-icon"><i class="fas fa-map-marked-alt"></i></div><strong>8</strong><span>Régions couvertes</span></div>
+    </div>
+
+    <!-- LISTE AGENCES -->
+    <div class="section-header" style="margin-top:48px">
+      <span class="section-badge">Nos Agences</span>
+      <h2>Trouvez l'agence <span class="text-accent">la plus proche</span></h2>
+    </div>
+
+    <!-- Filtre villes -->
+    <div class="city-filters">
+      <button class="city-btn active" data-city="all">Toutes les villes</button>
+      <button class="city-btn" data-city="douala">Douala</button>
+      <button class="city-btn" data-city="yaounde">Yaoundé</button>
+      <button class="city-btn" data-city="bafoussam">Bafoussam</button>
+      <button class="city-btn" data-city="garoua">Garoua</button>
+      <button class="city-btn" data-city="autres">Autres villes</button>
+    </div>
+
+    <div class="agencies-list" id="agencesList">
+
+      <div class="agency-full-card" data-city="douala">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Douala</div>
+          <span class="afc-badge siege">Siège Social</span>
+        </div>
+        <h3>Agence Principale – Akwa</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Avenue de la Liberté, Immeuble GFS Tower, Akwa, Douala</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 233 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-mobile-alt"></i><span>+237 6XX XXX XXX (WhatsApp)</span></div>
+          <div class="afc-det"><i class="fas fa-envelope"></i><span>akwa@gfs-cameroun.com</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00 | Sam : 9h00–13h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>3 GAB disponibles 24h/24</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+          <span><i class="fas fa-check"></i> Change</span>
+          <span><i class="fas fa-check"></i> Chéquiers</span>
+          <span><i class="fas fa-check"></i> Coffre-fort</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="douala">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Douala</div>
+        </div>
+        <h3>Agence Bonanjo</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Boulevard de la Réunification, Bonanjo, Douala</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 233 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>2 GAB disponibles 24h/24</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+          <span><i class="fas fa-check"></i> Chéquiers</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="yaounde">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Yaoundé</div>
+          <span class="afc-badge regional">Direction Régionale</span>
+        </div>
+        <h3>Agence Centre – Nlongkak</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Rue du Commerce, Quartier Nlongkak, Yaoundé I</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 222 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-mobile-alt"></i><span>+237 6XX XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00 | Sam : 9h00–13h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>2 GAB disponibles 24h/24</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+          <span><i class="fas fa-check"></i> Change</span>
+          <span><i class="fas fa-check"></i> Coffre-fort</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="yaounde">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Yaoundé</div>
+        </div>
+        <h3>Agence Bastos</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Avenue Hippodrome, Quartier Bastos, Yaoundé VI</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 222 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>1 GAB disponible 24h/24</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="bafoussam">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Bafoussam</div>
+        </div>
+        <h3>Agence Centrale – Bafoussam</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Place de l'Indépendance, Centre-ville, Bafoussam</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 233 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00 | Sam : 9h00–13h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>2 GAB disponibles 24h/24</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+          <span><i class="fas fa-check"></i> Finance Agricole</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="garoua">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Garoua</div>
+        </div>
+        <h3>Agence Nord – Garoua</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Avenue du Gouvernement, Garoua</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 222 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00</span></div>
+          <div class="afc-det"><i class="fas fa-credit-card"></i><span>1 GAB disponible</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+      <div class="agency-full-card" data-city="autres">
+        <div class="afc-header">
+          <div class="afc-city"><i class="fas fa-map-marker-alt"></i> Ngaoundéré</div>
+          <span class="afc-badge new">Nouveau</span>
+        </div>
+        <h3>Agence Adamaoua – Ngaoundéré</h3>
+        <div class="afc-details">
+          <div class="afc-det"><i class="fas fa-road"></i><span>Boulevard du Centenaire, Ngaoundéré</span></div>
+          <div class="afc-det"><i class="fas fa-phone"></i><span>+237 222 XXX XXX</span></div>
+          <div class="afc-det"><i class="fas fa-clock"></i><span>Lun–Ven : 8h00–17h00</span></div>
+        </div>
+        <div class="afc-services">
+          <span><i class="fas fa-check"></i> Dépôt/Retrait</span>
+          <span><i class="fas fa-check"></i> Crédit</span>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-direction"><i class="fas fa-directions"></i> Itinéraire</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/pages.js"></script>
+</body>
+</html>

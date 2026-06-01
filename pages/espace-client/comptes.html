@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes Comptes – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    .acc-detail-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .acc-full-card { background:#fff; border-radius:var(--cp-radius); border:1.5px solid var(--cp-gray-200); box-shadow:var(--cp-shadow); overflow:hidden; }
+    .acc-full-header { padding:24px; color:#fff; position:relative; }
+    .acc-full-header.courant { background:linear-gradient(135deg,#1B2A4A,#2d4a8a); }
+    .acc-full-header.epargne { background:linear-gradient(135deg,#27ae60,#1e8449); }
+    .acc-full-header.dat { background:linear-gradient(135deg,#8e44ad,#6c3483); }
+    .acc-full-header.entreprise { background:linear-gradient(135deg,#2980b9,#1a5276); }
+    .acc-full-body { padding:20px; }
+    .acc-info-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--cp-gray-200); font-size:13.5px; }
+    .acc-info-row:last-child { border-bottom:none; }
+    .acc-info-row label { color:var(--cp-gray-600); font-weight:600; }
+    .acc-info-row strong { color:var(--cp-gray-800); font-weight:700; }
+    @media(max-width:1100px){ .acc-detail-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){ .acc-detail-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1>Mes Comptes</h1>
+      <p>Vue détaillée de tous vos comptes GFS</p>
+    </div>
+    <div class="cp-topbar-actions">
+      <a href="../ouvrir-compte.html" class="cp-btn-primary" style="font-size:13px;padding:9px 18px;">
+        <i class="fas fa-plus"></i> Ouvrir un compte
+      </a>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <div id="accountsContainer">
+      <div class="cp-loading"><div class="cp-spinner"></div> Chargement de vos comptes...</div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+renderSidebar('comptes');
+fillClientHeader();
+
+async function loadAccounts() {
+  const container = document.getElementById('accountsContainer');
+  try {
+    const accounts = await api('/client-auth/accounts');
+    if (!accounts || !accounts.length) {
+      container.innerHTML = '<div class="cp-card"><div class="cp-empty"><i class="fas fa-university"></i><p>Vous n\'avez pas encore de compte actif.</p></div></div>';
+      return;
+    }
+    container.innerHTML = '<div class="acc-detail-grid">' + accounts.map(a => {
+      const typeKey = (a.type || 'COURANT').toLowerCase();
+      const typeHdr = { courant:'courant', epargne:'epargne', dat:'dat', entreprise:'entreprise' }[typeKey] || 'courant';
+      return '<div class="acc-full-card">'
+        + '<div class="acc-full-header ' + typeHdr + '">'
+        +   '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;opacity:.7;margin-bottom:10px;">' + accountTypeLabel(a.type) + '</div>'
+        +   '<div style="font-size:28px;font-weight:800;margin-bottom:8px;">' + fmt(a.balance) + '</div>'
+        +   '<div style="font-size:12px;opacity:.7;">' + (a.accountNumber || a.id.slice(0,12).toUpperCase()) + '</div>'
+        + '</div>'
+        + '<div class="acc-full-body">'
+        +   '<div class="acc-info-row"><label>Statut</label><span class="cp-badge ' + (a.status === 'ACTIVE' ? 'active' : 'closed') + '">' + (a.status === 'ACTIVE' ? 'Actif' : a.status) + '</span></div>'
+        +   '<div class="acc-info-row"><label>Agence</label><strong>' + (a.agency ? a.agency.name : '–') + '</strong></div>'
+        +   '<div class="acc-info-row"><label>Ouvert le</label><strong>' + fmtDate(a.createdAt) + '</strong></div>'
+        + (a.type === 'DAT' ? '<div class="acc-info-row"><label>Échéance</label><strong>' + fmtDate(a.maturityDate) + '</strong></div>' : '')
+        + (a.interestRate ? '<div class="acc-info-row"><label>Taux</label><strong>' + a.interestRate + '%/an</strong></div>' : '')
+        +   '<div style="display:flex;gap:8px;margin-top:16px;">'
+        +     '<button onclick="loadTx(\'' + a.id + '\')" class="cp-btn-primary" style="flex:1;font-size:13px;padding:10px;"><i class="fas fa-exchange-alt"></i> Mouvements</button>'
+        +     '<button onclick="exportPDF(\'' + a.id + '\',\'' + (a.accountNumber || a.id.slice(0,12).toUpperCase()) + '\')" class="cp-btn-secondary" style="font-size:13px;padding:10px;" title="Télécharger le relevé PDF"><i class="fas fa-file-pdf"></i></button>'
+        +   '</div>'
+        + '</div></div>';
+    }).join('') + '</div>';
+
+    // Mini transactions section
+    container.innerHTML += '<div id="txSection" style="margin-top:28px;"></div>';
+  } catch(e) {
+    container.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div>';
+  }
+}
+
+async function loadTx(accountId) {
+  const section = document.getElementById('txSection');
+  section.innerHTML = '<div class="cp-loading"><div class="cp-spinner"></div> Chargement...</div>';
+  section.scrollIntoView({ behavior:'smooth' });
+  try {
+    const data = await api('/client-auth/transactions?accountId=' + accountId + '&limit=15');
+    const txList = data && data.data ? data.data : (data || []);
+    if (!txList.length) {
+      section.innerHTML = '<div class="cp-card"><div class="cp-empty"><i class="fas fa-exchange-alt"></i><p>Aucune transaction sur ce compte.</p></div></div>';
+      return;
+    }
+    section.innerHTML = '<div class="cp-section-header"><h2>Mouvements du compte</h2></div>'
+      + '<div class="cp-card"><div style="overflow-x:auto;"><table class="cp-table">'
+      + '<thead><tr><th>Type</th><th>Description</th><th>Montant</th><th>Solde après</th><th>Date</th></tr></thead>'
+      + '<tbody>' + txList.map(tx => {
+        const isCredit = ['DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'].includes(tx.type);
+        const sign = isCredit ? '+' : '-';
+        const cls = isCredit ? 'credit' : 'debit';
+        return '<tr>'
+          + '<td><div style="display:flex;align-items:center;gap:10px;">'
+          +   '<div class="cp-tx-icon ' + cls + '"><i class="fas ' + (isCredit?'fa-arrow-down':'fa-arrow-up') + '"></i></div>'
+          +   '<span class="cp-tx-label">' + txLabel(tx.type) + '</span>'
+          + '</div></td>'
+          + '<td class="cp-tx-ref">' + (tx.description || tx.reference || '–') + '</td>'
+          + '<td><span class="cp-tx-amount ' + cls + '">' + sign + fmt(tx.amount) + '</span></td>'
+          + '<td style="font-size:13px;">' + (tx.balanceAfter != null ? fmt(tx.balanceAfter) : '–') + '</td>'
+          + '<td class="cp-tx-date">' + fmtDateTime(tx.createdAt) + '</td>'
+          + '</tr>';
+      }).join('') + '</tbody></table></div></div>';
+  } catch(e) {
+    section.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div>';
+  }
+}
+
+async function exportPDF(accountId, accountNumber) {
+  try {
+    const data = await api('/client-auth/transactions?accountId=' + accountId + '&limit=50');
+    const txList = data && data.data ? data.data : (data || []);
+    const client = getClient();
+    const clientName = client ? ((client.firstName || '') + ' ' + (client.lastName || '')).trim() : 'Client GFS';
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit:'mm', format:'a4' });
+    const W = 210; const M = 15;
+
+    // Header
+    doc.setFillColor(27, 42, 74);
+    doc.rect(0, 0, W, 35, 'F');
+    doc.setTextColor(245, 166, 35);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(20);
+    doc.text('GFS', M, 16);
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(11);
+    doc.text('Global Financial Solution – Relevé de compte', M + 14, 16);
+    doc.setFontSize(9);
+    doc.text('Généré le ' + new Date().toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' }), M, 26);
+
+    // Infos compte
+    doc.setTextColor(27, 42, 74);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Titulaire :', M, 48); doc.setFont('helvetica','normal'); doc.text(clientName, M + 24, 48);
+    doc.setFont('helvetica','bold');
+    doc.text('Compte :', M, 55); doc.setFont('helvetica','normal'); doc.text(accountNumber, M + 24, 55);
+    doc.setFont('helvetica','bold');
+    doc.text('Période :', M, 62); doc.setFont('helvetica','normal');
+    doc.text('50 dernières opérations', M + 24, 62);
+
+    // Ligne séparatrice
+    doc.setDrawColor(200, 210, 230);
+    doc.line(M, 67, W - M, 67);
+
+    // En-têtes tableau
+    let y = 74;
+    doc.setFillColor(240, 244, 255);
+    doc.rect(M, y - 5, W - 2*M, 7, 'F');
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(8.5);
+    doc.setTextColor(27, 42, 74);
+    doc.text('Date', M + 1, y);
+    doc.text('Type', M + 26, y);
+    doc.text('Description', M + 55, y);
+    doc.text('Montant (FCFA)', W - M - 1, y, { align:'right' });
+
+    y += 6;
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(8);
+
+    txList.forEach(function(tx, i) {
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+      const isCredit = ['DEPOSIT','VIREMENT_RECU','INTEREST','CREDIT_DISBURSEMENT','DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'].includes(tx.type);
+      const sign = isCredit ? '+' : '-';
+      const amtStr = sign + Number(tx.amount).toLocaleString('fr-FR') + ' F';
+      const date = tx.createdAt ? new Date(tx.createdAt).toLocaleDateString('fr-FR') : '–';
+      const desc = (tx.description || tx.reference || '–').slice(0, 40);
+      const typeLabel = tx.type || '–';
+
+      if (i % 2 === 0) { doc.setFillColor(248, 250, 255); doc.rect(M, y - 4, W - 2*M, 6, 'F'); }
+      doc.setTextColor(isCredit ? 39 : 231, isCredit ? 174 : 76, isCredit ? 96 : 60);
+      doc.text(date, M + 1, y);
+      doc.setTextColor(60, 60, 60);
+      doc.text(typeLabel.slice(0,18), M + 26, y);
+      doc.text(desc, M + 55, y);
+      doc.setTextColor(isCredit ? 27 : 192, isCredit ? 174 : 57, isCredit ? 60 : 43);
+      doc.setFont('helvetica','bold');
+      doc.text(amtStr, W - M - 1, y, { align:'right' });
+      doc.setFont('helvetica','normal');
+      doc.setTextColor(60, 60, 60);
+      y += 6;
+    });
+
+    // Footer
+    doc.setFontSize(8); doc.setTextColor(150);
+    doc.text('Document non contractuel. GFS – Agréé COBAC. contact@gfs-cameroun.com', W/2, 288, { align:'center' });
+
+    doc.save('releve-' + accountNumber + '-' + new Date().toISOString().slice(0,10) + '.pdf');
+  } catch(e) {
+    alert('Erreur lors de la génération du PDF : ' + e.message);
+  }
+}
+
+loadAccounts();
+</script>
+</body>
+</html>

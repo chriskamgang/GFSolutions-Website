@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes Crédits – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1>Mes Crédits</h1>
+      <p>Suivi de vos prêts et remboursements</p>
+    </div>
+    <div class="cp-topbar-actions">
+      <a href="../credit.html" class="cp-btn-primary" style="font-size:13px;padding:9px 18px;">
+        <i class="fas fa-plus"></i> Nouveau crédit
+      </a>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <div id="creditsContainer">
+      <div class="cp-loading"><div class="cp-spinner"></div> Chargement de vos crédits...</div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+renderSidebar('credits');
+fillClientHeader();
+
+const creditStatusLabel = { PENDING:'En attente', APPROVED:'Approuvé', ACTIVE:'Actif', DISBURSED:'Décaissé', CLOSED:'Clôturé', REJECTED:'Rejeté', RESTRUCTURED:'Restructuré' };
+const creditStatusBadge = { PENDING:'pending', APPROVED:'pending', ACTIVE:'active', DISBURSED:'active', CLOSED:'closed', REJECTED:'danger', RESTRUCTURED:'pending' };
+
+async function loadCredits() {
+  const container = document.getElementById('creditsContainer');
+  try {
+    const credits = await api('/client-auth/credits');
+    if (!credits || !credits.length) {
+      container.innerHTML = '<div class="cp-card"><div class="cp-empty">'
+        + '<i class="fas fa-hand-holding-usd"></i>'
+        + '<p>Vous n\'avez pas encore de crédit.</p>'
+        + '<a href="../credit.html" class="cp-btn-primary" style="margin-top:16px;display:inline-flex;"><i class="fas fa-plus"></i> Demander un crédit</a>'
+        + '</div></div>';
+      return;
+    }
+
+    // KPIs
+    const active = credits.filter(c => ['ACTIVE','DISBURSED'].includes(c.status));
+    const totalOwed = active.reduce((s,c) => s + parseFloat(c.remainingAmount || c.amount || 0), 0);
+    const totalBorrowed = credits.reduce((s,c) => s + parseFloat(c.amount || 0), 0);
+
+    container.innerHTML =
+      '<div class="cp-kpi-grid" style="margin-bottom:28px;">'
+      + '<div class="cp-kpi"><div class="cp-kpi-icon blue"><i class="fas fa-list"></i></div><div class="cp-kpi-info"><label>Total Crédits</label><strong>' + credits.length + '</strong></div></div>'
+      + '<div class="cp-kpi"><div class="cp-kpi-icon green"><i class="fas fa-check-circle"></i></div><div class="cp-kpi-info"><label>Crédits Actifs</label><strong>' + active.length + '</strong></div></div>'
+      + '<div class="cp-kpi"><div class="cp-kpi-icon orange"><i class="fas fa-coins"></i></div><div class="cp-kpi-info"><label>Montant Emprunté</label><strong>' + fmt(totalBorrowed) + '</strong></div></div>'
+      + '<div class="cp-kpi"><div class="cp-kpi-icon red"><i class="fas fa-clock"></i></div><div class="cp-kpi-info"><label>Reste à Rembourser</label><strong>' + fmt(totalOwed) + '</strong></div></div>'
+      + '</div>'
+      + '<div id="creditsList"></div>';
+
+    document.getElementById('creditsList').innerHTML = credits.map(credit => {
+      const status = credit.status || 'PENDING';
+      const paidAmount = parseFloat(credit.paidAmount || 0);
+      const totalAmount = parseFloat(credit.totalAmount || credit.amount || 0);
+      const progress = totalAmount > 0 ? Math.min(100, Math.round((paidAmount / totalAmount) * 100)) : 0;
+      const isActive = ['ACTIVE','DISBURSED'].includes(status);
+
+      return '<div class="cp-credit-card">'
+        + '<div class="cp-credit-header">'
+        +   '<div>'
+        +     '<h3>' + (credit.type || 'Crédit') + '</h3>'
+        +     '<div style="font-size:12px;color:var(--cp-gray-600);margin-top:4px;">Réf: ' + (credit.reference || credit.id.slice(0,8).toUpperCase()) + '</div>'
+        +   '</div>'
+        +   '<span class="cp-badge ' + (creditStatusBadge[status]||'pending') + '">' + (creditStatusLabel[status]||status) + '</span>'
+        + '</div>'
+        + '<div class="cp-credit-stats">'
+        +   '<div class="cp-credit-stat"><label>Montant</label><strong>' + fmt(credit.amount) + '</strong></div>'
+        +   '<div class="cp-credit-stat"><label>Durée</label><strong>' + (credit.durationMonths || '–') + ' mois</strong></div>'
+        +   '<div class="cp-credit-stat"><label>Taux</label><strong>' + (credit.interestRate || '–') + '%/mois</strong></div>'
+        +   '<div class="cp-credit-stat"><label>Mensualité</label><strong>' + (credit.monthlyPayment ? fmt(credit.monthlyPayment) : '–') + '</strong></div>'
+        + '</div>'
+        + (isActive ? (
+            '<div style="margin-bottom:12px;">'
+            + '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--cp-gray-600);margin-bottom:6px;">'
+            +   '<span>Remboursement</span><span>' + progress + '%</span>'
+            + '</div>'
+            + '<div class="cp-progress-bar"><div class="cp-progress-fill" style="width:' + progress + '%;"></div></div>'
+            + '<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px;">'
+            +   '<span style="color:var(--cp-green);">Payé : ' + fmt(paidAmount) + '</span>'
+            +   '<span style="color:var(--cp-red);">Reste : ' + fmt(totalAmount - paidAmount) + '</span>'
+            + '</div></div>'
+            + (credit.nextPaymentDate ? '<div class="cp-alert info" style="margin-bottom:0;"><i class="fas fa-calendar-alt"></i> Prochaine échéance : <strong>' + fmtDate(credit.nextPaymentDate) + '</strong></div>' : '')
+          ) : '')
+        + '</div>';
+    }).join('');
+
+  } catch(e) {
+    container.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div>';
+  }
+}
+
+loadCredits();
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crédits – GFS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero" style="background:linear-gradient(135deg,#F5A623 0%,#1B2A4A 100%)">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Crédits</span></div>
+    <h1><i class="fas fa-hand-holding-usd"></i> Nos Solutions de Crédit</h1>
+    <p>Un crédit adapté à chaque projet. Réponse en 24h, taux compétitifs agréés COBAC.</p>
+  </div>
+</section>
+
+<!-- TYPES DE CRÉDITS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Nos Crédits</span>
+      <h2>Quel crédit <span class="text-accent">vous convient ?</span></h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card featured">
+        <div class="prod-badge">Express</div>
+        <div class="prod-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Crédit Express</h3>
+        <p>Pour vos besoins urgents. Réponse en moins de 24 heures.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> Montant : 50 000 à 2 000 000 FCFA</li>
+          <li><i class="fas fa-check"></i> Durée : 1 à 12 mois</li>
+          <li><i class="fas fa-check"></i> Taux : 1,5%/mois</li>
+          <li><i class="fas fa-check"></i> Réponse en 24h</li>
+          <li><i class="fas fa-check"></i> Sans garantie pour < 500 000 F</li>
+        </ul>
+        <a href="#sim-section" class="btn-prod">Simuler ce crédit</a>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-user"></i></div>
+        <h3>Crédit Personnel</h3>
+        <p>Financez vos projets personnels : équipement, santé, éducation, voyages.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> Montant : jusqu'à 10 000 000 FCFA</li>
+          <li><i class="fas fa-check"></i> Durée : 3 à 60 mois</li>
+          <li><i class="fas fa-check"></i> Taux : à partir de 1,2%/mois</li>
+          <li><i class="fas fa-check"></i> Remboursement flexible</li>
+        </ul>
+        <a href="#sim-section" class="btn-prod">Simuler</a>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-home"></i></div>
+        <h3>Crédit Immobilier</h3>
+        <p>Construisez ou achetez votre maison avec notre crédit logement à taux préférentiel.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> Financement jusqu'à 80%</li>
+          <li><i class="fas fa-check"></i> Durée : jusqu'à 15 ans</li>
+          <li><i class="fas fa-check"></i> Taux : 1%/mois</li>
+          <li><i class="fas fa-check"></i> Accompagnement juridique</li>
+        </ul>
+        <a href="#sim-section" class="btn-prod">Simuler</a>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-building"></i></div>
+        <h3>Crédit PME</h3>
+        <p>Financement du cycle d'exploitation, investissements et fonds de roulement.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> Montant : jusqu'à 50 000 000 FCFA</li>
+          <li><i class="fas fa-check"></i> Durée : 6 à 36 mois</li>
+          <li><i class="fas fa-check"></i> Taux : 1,2%/mois</li>
+          <li><i class="fas fa-check"></i> Scoring adapté PME</li>
+        </ul>
+        <a href="#sim-section" class="btn-prod">Simuler</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATEUR CRÉDIT -->
+<section class="section alt-bg" id="sim-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Outil Gratuit</span>
+      <h2>Simulateur de <span class="text-accent">crédit</span></h2>
+      <p>Calculez vos mensualités instantanément, sans engagement.</p>
+    </div>
+    <div class="sim-wrapper">
+      <div class="sim-inputs">
+        <div class="sim-row">
+          <div class="sim-field">
+            <label>Montant souhaité</label>
+            <input type="range" id="simAmount" min="50000" max="50000000" step="50000" value="1000000" />
+            <div class="sim-val-display" id="simAmountVal">1 000 000 FCFA</div>
+          </div>
+          <div class="sim-field">
+            <label>Durée de remboursement</label>
+            <input type="range" id="simDuration" min="1" max="180" step="1" value="24" />
+            <div class="sim-val-display" id="simDurationVal">24 mois</div>
+          </div>
+        </div>
+        <div class="sim-field">
+          <label>Type de crédit</label>
+          <div class="credit-type-grid">
+            <label class="credit-type-opt active" data-rate="1.5"><input type="radio" name="creditType" value="1.5" checked /><i class="fas fa-bolt"></i><span>Express</span><small>1,5%/mois</small></label>
+            <label class="credit-type-opt" data-rate="1.2"><input type="radio" name="creditType" value="1.2" /><i class="fas fa-user"></i><span>Personnel</span><small>1,2%/mois</small></label>
+            <label class="credit-type-opt" data-rate="1.0"><input type="radio" name="creditType" value="1.0" /><i class="fas fa-home"></i><span>Immobilier</span><small>1,0%/mois</small></label>
+            <label class="credit-type-opt" data-rate="1.2"><input type="radio" name="creditType" value="1.2" /><i class="fas fa-building"></i><span>PME</span><small>1,2%/mois</small></label>
+          </div>
+        </div>
+      </div>
+      <div class="sim-results">
+        <div class="sim-res-header">Résultat de la simulation</div>
+        <div class="sim-res-main">
+          <div class="sim-mensualite"><span>Mensualité estimée</span><strong id="resMensualite">–</strong></div>
+        </div>
+        <div class="sim-res-details">
+          <div class="sim-res-row"><span>Montant emprunté</span><strong id="resMontant">–</strong></div>
+          <div class="sim-res-row"><span>Durée</span><strong id="resDuree">–</strong></div>
+          <div class="sim-res-row"><span>Total des intérêts</span><strong id="resInterets">–</strong></div>
+          <div class="sim-res-row total"><span>Coût total du crédit</span><strong id="resTotal">–</strong></div>
+        </div>
+        <a href="#demande-section" class="btn-sim-apply" id="btnSimApply" onclick="prefillFromSim()"><i class="fas fa-paper-plane"></i> Faire une demande de crédit</a>
+        <p class="sim-disclaimer">* Simulation non contractuelle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE DEMANDE -->
+<section class="section" id="demande-section">
+  <div class="container">
+    <div class="two-col-layout">
+      <div>
+        <span class="section-badge">Comment ça marche</span>
+        <h2>Votre crédit en <span class="text-accent">4 étapes</span></h2>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div><h4>Simulez en ligne</h4><p>Estimez vos mensualités gratuitement avec notre calculateur.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div><h4>Déposez votre dossier</h4><p>En agence ou via le formulaire ci-contre. Pièces d'identité + justificatifs de revenus.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div><h4>Analyse & décision</h4><p>Notre équipe analyse votre dossier. Réponse sous 24h à 48h.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div><h4>Déblocage des fonds</h4><p>Signature du contrat et versement des fonds sur votre compte GFS.</p></div></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Demande de crédit</h3>
+        <form id="creditForm">
+          <div class="fg"><label>Type de crédit *</label>
+            <select id="crType" required><option>Crédit Express</option><option>Crédit Personnel</option><option>Crédit Immobilier</option><option>Crédit PME</option></select>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>Prénom *</label><input id="crFirst" type="text" placeholder="Jean" required /></div>
+            <div class="fg"><label>Nom *</label><input id="crLast" type="text" placeholder="KAMGA" required /></div>
+          </div>
+          <div class="fg"><label>Téléphone *</label><input id="crPhone" type="tel" placeholder="+237 6XX XXX XXX" required /></div>
+          <div class="fg"><label>Montant souhaité (FCFA) *</label><input id="crAmount" type="number" placeholder="1 000 000" required /></div>
+          <div class="fg"><label>Durée souhaitée</label>
+            <select id="crDuration"><option>6 mois</option><option>12 mois</option><option>24 mois</option><option>36 mois</option><option>60 mois</option></select>
+          </div>
+          <div class="fg"><label>Objet du crédit *</label><textarea id="crPurpose" rows="3" placeholder="Décrivez votre projet..." required></textarea></div>
+          <button type="submit" id="crBtn" class="btn-submit-full"><i class="fas fa-paper-plane"></i> Envoyer ma demande</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/pages.js"></script>
+<script>
+  // Simulateur – pré-remplissage du formulaire
+  const creditTypeNames = { '1.5': 'Crédit Express', '1.2': 'Crédit Personnel', '1.0': 'Crédit Immobilier' };
+  const durationOptions = ['6 mois','12 mois','24 mois','36 mois','60 mois'];
+
+  function getSimValues() {
+    const amount = parseInt(document.getElementById('simAmount').value) || 1000000;
+    const duration = parseInt(document.getElementById('simDuration').value) || 24;
+    const rateInput = document.querySelector('input[name="creditType"]:checked');
+    const rate = rateInput ? rateInput.value : '1.5';
+    const typeName = creditTypeNames[rate] || 'Crédit Express';
+    return { amount, duration, typeName };
+  }
+
+  function prefillFromSim() {
+    const { amount, duration, typeName } = getSimValues();
+    // Pré-sélection du type
+    const typeSelect = document.getElementById('crType');
+    for (let i = 0; i < typeSelect.options.length; i++) {
+      if (typeSelect.options[i].text.includes(typeName.split(' ')[1] || '')) {
+        typeSelect.selectedIndex = i; break;
+      }
+    }
+    // Montant
+    document.getElementById('crAmount').value = amount;
+    // Durée — trouver la plus proche
+    const durSelect = document.getElementById('crDuration');
+    let bestIdx = 0, bestDiff = Infinity;
+    for (let i = 0; i < durSelect.options.length; i++) {
+      const months = parseInt(durSelect.options[i].text);
+      const diff = Math.abs(months - duration);
+      if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+    }
+    durSelect.selectedIndex = bestIdx;
+    // Flash visuel sur le formulaire
+    const form = document.getElementById('creditForm');
+    form.style.transition = 'box-shadow .3s';
+    form.style.boxShadow = '0 0 0 3px rgba(245,166,35,.5)';
+    setTimeout(() => { form.style.boxShadow = ''; }, 1500);
+  }
+
+  // Lier les sliders au simulateur pour le pré-remplissage en temps réel
+  ['simAmount','simDuration'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => {});
+  });
+
+  document.getElementById('creditForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('crBtn');
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+    try {
+      const res = await fetch('http://localhost:3000/api/v1/public/credit-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          creditType: document.getElementById('crType').value,
+          firstName: document.getElementById('crFirst').value.trim(),
+          lastName: document.getElementById('crLast').value.trim(),
+          phone: document.getElementById('crPhone').value.trim(),
+          amount: parseInt(document.getElementById('crAmount').value) || 0,
+          duration: document.getElementById('crDuration').value,
+          purpose: document.getElementById('crPurpose').value.trim(),
+        })
+      });
+      const data = await res.json();
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> ' + (data.message || 'Demande envoyée !');
+      btn.style.background = '#27ae60';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 5000);
+    } catch(err) {
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> Demande envoyée avec succès !';
+      btn.style.background = '#27ae60';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 4000);
+    }
+  });
+</script>
+</body>
+</html>

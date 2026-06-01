@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banque en Ligne – GFS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/client-portal.css" />
+  <style>
+    /* Override : fond de page avec nav intégrée */
+    body { background: linear-gradient(135deg, #0f1a30 0%, #1B2A4A 100%); min-height: 100vh; }
+    .cp-login-body { background: none; }
+    .login-page-wrap {
+      min-height: calc(100vh - 70px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 16px;
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="login-page-wrap">
+<div class="cp-login-box">
+  <a href="../index.html" class="cp-login-logo">
+    <div class="cp-login-logo-icon">GFS</div>
+    <div class="cp-login-logo-text">
+      <strong>Global Financial Solution</strong>
+      <span>Banque en Ligne</span>
+    </div>
+  </a>
+
+  <h1>Connexion à votre espace</h1>
+  <p>Entrez votre numéro de téléphone ou votre code adhérent et votre mot de passe.</p>
+
+  <div class="cp-login-error" id="loginError">
+    <i class="fas fa-exclamation-circle"></i>
+    <span id="loginErrorMsg">Identifiant ou mot de passe incorrect.</span>
+  </div>
+
+  <form id="loginForm" autocomplete="on">
+    <div class="cp-login-fg">
+      <label for="identifier">Téléphone ou N° Adhérent</label>
+      <div class="input-wrap">
+        <i class="fas fa-user"></i>
+        <input type="text" id="identifier" name="identifier" placeholder="+237 6XX XXX XXX ou GFS-XXXX" required autocomplete="username" />
+      </div>
+    </div>
+    <div class="cp-login-fg">
+      <label for="password">Mot de passe ou PIN</label>
+      <div class="input-wrap">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" placeholder="Votre mot de passe ou code PIN" required autocomplete="current-password" />
+        <i class="fas fa-eye" id="togglePwd" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;left:auto;color:#94a3b8;"></i>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+      <a href="contact.html" style="font-size:13px;color:#1B2A4A;font-weight:600;">Mot de passe oublié ?</a>
+    </div>
+
+    <button type="submit" class="cp-login-btn" id="loginBtn">
+      <i class="fas fa-sign-in-alt"></i> Se connecter
+    </button>
+  </form>
+
+  <div class="cp-login-footer">
+    <p>Pas encore client ? <a href="ouvrir-compte.html">Ouvrir un compte</a></p>
+    <p style="margin-top:10px;"><a href="../index.html"><i class="fas fa-arrow-left"></i> Retour au site</a></p>
+  </div>
+
+  <div style="margin-top:28px;padding-top:20px;border-top:1px solid #e2e8f0;text-align:center;">
+    <p style="font-size:11px;color:#94a3b8;display:flex;align-items:center;justify-content:center;gap:6px;">
+      <i class="fas fa-lock"></i> Connexion sécurisée SSL 256 bits – Agréé COBAC
+    </p>
+  </div>
+</div>
+
+</div><!-- /login-page-wrap -->
+
+<div id="footer-placeholder"></div>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/client-api.js"></script>
+<script>
+  // Rediriger si déjà connecté
+  redirectIfLoggedIn();
+
+  // Toggle password visibility
+  document.getElementById('togglePwd').addEventListener('click', function() {
+    const pwd = document.getElementById('password');
+    const isText = pwd.type === 'text';
+    pwd.type = isText ? 'password' : 'text';
+    this.className = isText ? 'fas fa-eye' : 'fas fa-eye-slash';
+    this.style.cssText = 'position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;left:auto;color:#94a3b8;';
+  });
+
+  // Formulaire login
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('loginBtn');
+    const errDiv = document.getElementById('loginError');
+    const errMsg = document.getElementById('loginErrorMsg');
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="cp-spinner" style="border-color:#fff3;border-top-color:#1B2A4A;width:16px;height:16px;display:inline-block;border-width:2px;border-style:solid;border-radius:50%;animation:spin .7s linear infinite;"></span> Connexion...';
+    errDiv.classList.remove('show');
+
+    try {
+      const data = await api('/client-auth/login', {
+        method: 'POST',
+        body: {
+          identifier: document.getElementById('identifier').value.trim(),
+          password: document.getElementById('password').value,
+        }
+      });
+
+      if (data && data.access_token) {
+        setToken(data.access_token);
+        if (data.client) setClient(data.client);
+        window.location.href = 'espace-client/index.html';
+      } else {
+        throw new Error('Réponse inattendue du serveur.');
+      }
+    } catch (err) {
+      errMsg.textContent = err.message || 'Identifiant ou mot de passe incorrect.';
+      errDiv.classList.add('show');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
+    }
+  });
+</script>
+</body>
+</html>

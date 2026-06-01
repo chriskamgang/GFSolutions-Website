@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+  <style>
+    .notif-list { display:flex; flex-direction:column; gap:0; }
+    .notif-item { display:flex; gap:16px; padding:18px 20px; border-bottom:1px solid var(--cp-gray-200); align-items:flex-start; transition:.15s; cursor:default; }
+    .notif-item:last-child { border-bottom:none; }
+    .notif-item.unread { background:#f8faff; }
+    .notif-item:hover { background:#f0f4ff; }
+    .notif-dot { width:8px; height:8px; border-radius:50%; background:#1B2A4A; margin-top:6px; flex-shrink:0; }
+    .notif-item.read .notif-dot { background:transparent; border:2px solid var(--cp-gray-300); }
+    .notif-icon { width:42px; height:42px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+    .notif-icon.in { background:#e8f8f0; color:#27ae60; }
+    .notif-icon.out { background:#fff3e0; color:#F5A623; }
+    .notif-icon.info { background:#e8f0ff; color:#1B2A4A; }
+    .notif-icon.alert { background:#ffe8e8; color:#e74c3c; }
+    .notif-body { flex:1; min-width:0; }
+    .notif-title { font-size:14px; font-weight:700; color:var(--cp-gray-800); margin-bottom:3px; }
+    .notif-msg { font-size:13px; color:var(--cp-gray-600); line-height:1.5; white-space:pre-line; }
+    .notif-date { font-size:11.5px; color:var(--cp-gray-400); margin-top:5px; }
+    .notif-badge { display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:700; background:#1B2A4A; color:#fff; margin-left:8px; }
+  </style>
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1>Notifications <span class="notif-badge" id="unreadBadge" style="display:none;"></span></h1>
+      <p>Vos alertes et messages GFS</p>
+    </div>
+    <div class="cp-topbar-actions">
+      <button onclick="markAllRead()" class="cp-btn-secondary" id="markReadBtn" style="font-size:13px;padding:9px 18px;display:none;">
+        <i class="fas fa-check-double"></i> Tout marquer comme lu
+      </button>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <div class="cp-card" style="padding:0;overflow:hidden;">
+      <div id="notifContainer">
+        <div class="cp-loading"><div class="cp-spinner"></div> Chargement...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+renderSidebar('notifications');
+fillClientHeader();
+
+function notifIcon(title) {
+  const t = (title || '').toLowerCase();
+  if (t.includes('reçu') || t.includes('credité') || t.includes('depot')) return { cls:'in', icon:'fa-arrow-down' };
+  if (t.includes('virement') || t.includes('effectué') || t.includes('retrait')) return { cls:'out', icon:'fa-arrow-up' };
+  if (t.includes('bloqué') || t.includes('suspendu') || t.includes('erreur')) return { cls:'alert', icon:'fa-exclamation' };
+  return { cls:'info', icon:'fa-bell' };
+}
+
+async function loadNotifs() {
+  const container = document.getElementById('notifContainer');
+  try {
+    const data = await api('/client-auth/notifications?limit=50');
+    const list = data.data || [];
+    const unread = data.unreadCount || 0;
+
+    if (unread > 0) {
+      document.getElementById('unreadBadge').textContent = unread;
+      document.getElementById('unreadBadge').style.display = 'inline-block';
+      document.getElementById('markReadBtn').style.display = 'inline-flex';
+    }
+
+    if (!list.length) {
+      container.innerHTML = '<div class="cp-empty" style="padding:60px 20px;"><i class="fas fa-bell-slash"></i><p>Aucune notification pour le moment.</p></div>';
+      return;
+    }
+
+    container.innerHTML = '<div class="notif-list">' + list.map(n => {
+      const ico = notifIcon(n.title);
+      const isUnread = !n.isRead;
+      return '<div class="notif-item ' + (isUnread ? 'unread' : 'read') + '">'
+        + '<div class="notif-dot"></div>'
+        + '<div class="notif-icon ' + ico.cls + '"><i class="fas ' + ico.icon + '"></i></div>'
+        + '<div class="notif-body">'
+        +   '<div class="notif-title">' + (n.title || 'Notification') + '</div>'
+        +   '<div class="notif-msg">' + (n.message || '') + '</div>'
+        +   '<div class="notif-date"><i class="fas fa-clock" style="margin-right:4px;"></i>' + fmtDateTime(n.createdAt) + '</div>'
+        + '</div></div>';
+    }).join('') + '</div>';
+  } catch(e) {
+    container.innerHTML = '<div class="cp-alert error" style="margin:20px;"><i class="fas fa-exclamation-circle"></i> ' + e.message + '</div>';
+  }
+}
+
+async function markAllRead() {
+  try {
+    await api('/client-auth/notifications/read', { method: 'PATCH' });
+    document.getElementById('unreadBadge').style.display = 'none';
+    document.getElementById('markReadBtn').style.display = 'none';
+    document.querySelectorAll('.notif-item.unread').forEach(el => {
+      el.classList.remove('unread');
+      el.classList.add('read');
+      el.querySelector('.notif-dot').style.background = 'transparent';
+      el.querySelector('.notif-dot').style.border = '2px solid #cbd5e0';
+    });
+    // Mettre à jour badge sidebar
+    const badge = document.getElementById('sidebarNotifBadge');
+    if (badge) badge.style.display = 'none';
+  } catch(e) {}
+}
+
+loadNotifs();
+
+// Polling toutes les 30 secondes
+setInterval(async () => {
+  try {
+    const data = await api('/client-auth/notifications?limit=1');
+    const unread = data.unreadCount || 0;
+    const badge = document.getElementById('unreadBadge');
+    const sidebarBadge = document.getElementById('sidebarNotifBadge');
+    if (unread > 0) {
+      if (badge) { badge.textContent = unread; badge.style.display = 'inline-block'; }
+      if (sidebarBadge) { sidebarBadge.textContent = unread; sidebarBadge.style.display = 'inline-block'; }
+    } else {
+      if (badge) badge.style.display = 'none';
+      if (sidebarBadge) sidebarBadge.style.display = 'none';
+    }
+  } catch(e) {}
+}, 30000);
+</script>
+</body>
+</html>

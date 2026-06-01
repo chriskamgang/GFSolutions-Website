@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transactions – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1>Historique des Transactions</h1>
+      <p>Toutes vos opérations bancaires</p>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <!-- Filtres -->
+    <div class="cp-filters">
+      <select id="filterAccount">
+        <option value="">Tous les comptes</option>
+      </select>
+      <select id="filterType">
+        <option value="">Tous les types</option>
+        <option value="DEPOT">Dépôt</option>
+        <option value="RETRAIT">Retrait</option>
+        <option value="VIREMENT_EMIS">Virement envoyé</option>
+        <option value="VIREMENT_RECU">Virement reçu</option>
+        <option value="FRAIS">Frais</option>
+      </select>
+      <input type="date" id="filterStart" title="Date début" />
+      <input type="date" id="filterEnd" title="Date fin" />
+      <button class="cp-btn-primary" onclick="loadTransactions(1)" style="font-size:13px;padding:9px 18px;">
+        <i class="fas fa-search"></i> Filtrer
+      </button>
+    </div>
+
+    <!-- KPIs période -->
+    <div class="cp-kpi-grid" id="txKpis" style="display:none;">
+      <div class="cp-kpi"><div class="cp-kpi-icon green"><i class="fas fa-arrow-down"></i></div><div class="cp-kpi-info"><label>Total Crédité</label><strong id="kpiCredite">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon red"><i class="fas fa-arrow-up"></i></div><div class="cp-kpi-info"><label>Total Débité</label><strong id="kpiDebite">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon blue"><i class="fas fa-list"></i></div><div class="cp-kpi-info"><label>Nb Opérations</label><strong id="kpiNbOps">–</strong></div></div>
+      <div class="cp-kpi"><div class="cp-kpi-icon orange"><i class="fas fa-balance-scale"></i></div><div class="cp-kpi-info"><label>Solde Net</label><strong id="kpiNet">–</strong></div></div>
+    </div>
+
+    <div class="cp-card">
+      <div class="cp-card-header">
+        <h3 id="txCount">Transactions</h3>
+        <button class="cp-btn-outline" onclick="exportCsv()" style="font-size:12px;padding:7px 14px;">
+          <i class="fas fa-download"></i> Export CSV
+        </button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="cp-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description / Réf.</th>
+              <th>Compte</th>
+              <th>Montant</th>
+              <th>Solde après</th>
+              <th>Date & Heure</th>
+            </tr>
+          </thead>
+          <tbody id="txBody">
+            <tr><td colspan="6"><div class="cp-loading"><div class="cp-spinner"></div> Chargement...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cp-pagination" id="pagination"></div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+renderSidebar('transactions');
+fillClientHeader();
+
+let allTxData = [];
+let currentPage = 1;
+const perPage = 20;
+
+// Charger les comptes pour le filtre
+api('/client-auth/accounts').then(accounts => {
+  const sel = document.getElementById('filterAccount');
+  (accounts || []).forEach(a => {
+    const opt = document.createElement('option');
+    opt.value = a.id;
+    opt.textContent = accountTypeLabel(a.type) + ' – ' + (a.accountNumber || a.id.slice(0,8).toUpperCase());
+    sel.appendChild(opt);
+  });
+}).catch(() => {});
+
+async function loadTransactions(page) {
+  page = page || 1;
+  currentPage = page;
+  const tbody = document.getElementById('txBody');
+  tbody.innerHTML = '<tr><td colspan="6"><div class="cp-loading"><div class="cp-spinner"></div></div></td></tr>';
+
+  const accountId = document.getElementById('filterAccount').value;
+  const type = document.getElementById('filterType').value;
+  const start = document.getElementById('filterStart').value;
+  const end = document.getElementById('filterEnd').value;
+
+  let url = '/client-auth/transactions?limit=' + perPage + '&page=' + page;
+  if (accountId) url += '&accountId=' + accountId;
+
+  try {
+    const data = await api(url);
+    let txList = data && data.data ? data.data : (data || []);
+    const total = data && data.total ? data.total : txList.length;
+
+    // Filtres client-side (type, dates)
+    if (type) txList = txList.filter(tx => tx.type === type);
+    if (start) txList = txList.filter(tx => new Date(tx.createdAt) >= new Date(start));
+    if (end)   txList = txList.filter(tx => new Date(tx.createdAt) <= new Date(end + 'T23:59:59'));
+
+    allTxData = txList;
+
+    // KPIs
+    const kpis = document.getElementById('txKpis');
+    kpis.style.display = 'grid';
+    const creditTypes = ['DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'];
+    const totalCredit = txList.filter(t => creditTypes.includes(t.type)).reduce((s,t) => s + parseFloat(t.amount||0), 0);
+    const totalDebit  = txList.filter(t => !creditTypes.includes(t.type)).reduce((s,t) => s + parseFloat(t.amount||0), 0);
+    document.getElementById('kpiCredite').textContent = fmt(totalCredit);
+    document.getElementById('kpiDebite').textContent  = fmt(totalDebit);
+    document.getElementById('kpiNbOps').textContent   = txList.length;
+    document.getElementById('kpiNet').textContent     = fmt(totalCredit - totalDebit);
+    document.getElementById('txCount').textContent    = 'Transactions (' + txList.length + ')';
+
+    if (!txList.length) {
+      tbody.innerHTML = '<tr><td colspan="6"><div class="cp-empty"><i class="fas fa-exchange-alt"></i><p>Aucune transaction trouvée</p></div></td></tr>';
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+
+    tbody.innerHTML = txList.map(tx => {
+      const isCredit = ['DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'].includes(tx.type);
+      const sign = isCredit ? '+' : '-';
+      const cls = isCredit ? 'credit' : 'debit';
+      const accountNum = tx.account ? (tx.account.accountNumber || tx.accountId.slice(0,8)) : '–';
+      return '<tr>'
+        + '<td><div style="display:flex;align-items:center;gap:10px;">'
+        +   '<div class="cp-tx-icon ' + cls + '"><i class="fas ' + (isCredit?'fa-arrow-down':'fa-arrow-up') + '"></i></div>'
+        +   '<span class="cp-tx-label">' + txLabel(tx.type) + '</span>'
+        + '</div></td>'
+        + '<td><div class="cp-tx-label" style="font-size:13px;">' + (tx.description || '–') + '</div>'
+        +   '<div class="cp-tx-ref">' + (tx.reference || '') + '</div></td>'
+        + '<td style="font-size:12px;color:var(--cp-gray-600);">' + accountNum + '</td>'
+        + '<td><span class="cp-tx-amount ' + cls + '">' + sign + fmt(tx.amount) + '</span></td>'
+        + '<td style="font-size:13px;">' + (tx.balanceAfter != null ? fmt(tx.balanceAfter) : '–') + '</td>'
+        + '<td class="cp-tx-date">' + fmtDateTime(tx.createdAt) + '</td>'
+        + '</tr>';
+    }).join('');
+
+    // Pagination
+    const totalPages = Math.ceil(total / perPage);
+    renderPagination(page, totalPages);
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="cp-alert error" style="margin:16px;"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div></td></tr>';
+  }
+}
+
+function renderPagination(page, totalPages) {
+  if (totalPages <= 1) { document.getElementById('pagination').innerHTML = ''; return; }
+  let html = '';
+  html += '<button class="cp-page-btn" onclick="loadTransactions(' + (page-1) + ')" ' + (page<=1?'disabled':'') + '><i class="fas fa-chevron-left"></i></button>';
+  for (let i = Math.max(1, page-2); i <= Math.min(totalPages, page+2); i++) {
+    html += '<button class="cp-page-btn ' + (i===page?'active':'') + '" onclick="loadTransactions(' + i + ')">' + i + '</button>';
+  }
+  html += '<button class="cp-page-btn" onclick="loadTransactions(' + (page+1) + ')" ' + (page>=totalPages?'disabled':'') + '><i class="fas fa-chevron-right"></i></button>';
+  document.getElementById('pagination').innerHTML = html;
+}
+
+function exportCsv() {
+  if (!allTxData.length) return;
+  const rows = [['Date','Type','Description','Référence','Montant','Solde après']];
+  allTxData.forEach(tx => {
+    const isCredit = ['DEPOT','VIREMENT_RECU','INTEREST','CREDIT_DECAISSEMENT'].includes(tx.type);
+    rows.push([
+      fmtDateTime(tx.createdAt), txLabel(tx.type),
+      tx.description || '', tx.reference || '',
+      (isCredit?'+':'-') + Math.round(tx.amount),
+      tx.balanceAfter != null ? Math.round(tx.balanceAfter) : ''
+    ]);
+  });
+  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF' + csv);
+  a.download = 'transactions-gfs-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+}
+
+loadTransactions(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Financial Solution – Votre Partenaire Financier de Confiance</title>
+  <meta name="description" content="Global Financial Solution (GFS) – Institution de microfinance camerounaise agréée COBAC. Épargne, crédit, transfert d'argent, mobile money." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<!-- ===== SECONDARY TOP BAR (comme UBA) ===== -->
+<div class="secondary-bar">
+  <div class="container secondary-inner">
+    <div class="secondary-left">
+      <a href="index.html">GFS Groupe</a>
+      <a href="pages/carrieres.html">Carrières</a>
+      <a href="pages/agences.html">Localisateur de GAB / Agences</a>
+    </div>
+    <div class="secondary-right">
+      <div class="country-selector">
+        <span class="flag">🇨🇲</span>
+        <span>CAMEROUN</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <button class="search-btn" id="searchToggle"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+  <!-- Barre de recherche dépliable -->
+  <div class="search-bar" id="searchBar">
+    <div class="container">
+      <input type="text" placeholder="Rechercher un produit, service, agence..." id="searchInput" />
+      <button class="search-submit"><i class="fas fa-search"></i> Rechercher</button>
+      <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN NAVBAR (structure UBA) ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container navbar-inner">
+
+    <!-- Bouton Banque en Ligne (comme UBA à gauche) -->
+    <a href="pages/ouvrir-compte.html" class="btn-online-banking">
+      <i class="fas fa-lock"></i> BANQUE EN LIGNE
+    </a>
+
+    <!-- Logo centré -->
+    <a href="index.html" class="logo">
+      <div class="logo-icon">
+        <span class="logo-g">G</span><span class="logo-f">F</span><span class="logo-s">S</span>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Global Financial Solution</span>
+        <span class="logo-tagline">Votre partenaire de confiance</span>
+      </div>
+    </a>
+
+    <!-- Menu principal (structure UBA) -->
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link active-link">Home</a>
+      </li>
+
+      <!-- PARTICULIERS -->
+      <li class="nav-item has-mega">
+        <a href="#" class="nav-link">PARTICULIERS <i class="fas fa-chevron-down"></i></a>
+        <div class="mega-dropdown">
+          <div class="container">
+            <div class="mega-grid-8">
+              <a href="pages/ouvrir-compte.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-university"></i></div>
+                <span>Comptes Particuliers</span>
+              </a>
+              <a href="pages/cartes.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-credit-card"></i></div>
+                <span>Cartes Bancaires</span>
+              </a>
+              <a href="pages/mobile-banking.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-mobile-alt"></i></div>
+                <span>Banque Digitale</span>
+              </a>
+              <a href="pages/transfert.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-exchange-alt"></i></div>
+                <span>Transfert D'argent</span>
+              </a>
+              <a href="pages/assurance.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Solutions D'assurance GFS</span>
+              </a>
+              <a href="pages/epargne.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-box"></i></div>
+                <span>GFS EPack</span>
+              </a>
+              <a href="pages/elite.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-crown"></i></div>
+                <span>GFS Elite Program</span>
+              </a>
+              <a href="pages/ladies.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-female"></i></div>
+                <span>GFS Ladies Program</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- PME -->
+      <li class="nav-item has-mega">
+        <a href="#" class="nav-link">PME <i class="fas fa-chevron-down"></i></a>
+        <div class="mega-dropdown">
+          <div class="container">
+            <div class="mega-grid-8">
+              <a href="pages/ouvrir-compte.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-building"></i></div>
+                <span>Compte PME</span>
+              </a>
+              <a href="pages/credit.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-chart-line"></i></div>
+                <span>Crédit PME</span>
+              </a>
+              <a href="pages/credit.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <span>Crédit Campagne</span>
+              </a>
+              <a href="pages/epargne.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-handshake"></i></div>
+                <span>GFS Business Pack</span>
+              </a>
+              <a href="pages/mobile-banking.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-laptop"></i></div>
+                <span>Digital Business</span>
+              </a>
+              <a href="pages/finance-agricole.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-leaf"></i></div>
+                <span>Finance Agricole</span>
+              </a>
+              <a href="pages/affacturage.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-tags"></i></div>
+                <span>Affacturage</span>
+              </a>
+              <a href="pages/assurance.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-shield-alt"></i></div>
+                <span>Assurance Entreprise</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <!-- ENTREPRISES -->
+      <li class="nav-item has-mega">
+        <a href="#" class="nav-link">ENTREPRISES <i class="fas fa-chevron-down"></i></a>
+        <div class="mega-dropdown">
+          <div class="container">
+            <div class="mega-grid-8">
+              <a href="pages/ouvrir-compte.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-city"></i></div>
+                <span>Compte Entreprise</span>
+              </a>
+              <a href="pages/salaires.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-money-bill-wave"></i></div>
+                <span>Virements Salaires</span>
+              </a>
+              <a href="pages/salaires.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-users"></i></div>
+                <span>Gestion Employés</span>
+              </a>
+              <a href="pages/transfert.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-globe"></i></div>
+                <span>Transferts Internationaux</span>
+              </a>
+              <a href="pages/corporate.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-balance-scale"></i></div>
+                <span>GFS Corporate Pack</span>
+              </a>
+              <a href="pages/corporate.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-chart-bar"></i></div>
+                <span>Cash Management</span>
+              </a>
+              <a href="pages/credit.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-file-contract"></i></div>
+                <span>Financement Projets</span>
+              </a>
+              <a href="pages/mobile-banking.html" class="mega-item">
+                <div class="mega-item-icon"><i class="fas fa-qrcode"></i></div>
+                <span>Paiement Marchand QR</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a href="#about" class="nav-link">A PROPOS DE NOUS</a>
+      </li>
+      <li class="nav-item">
+        <a href="#news" class="nav-link">ACTUALITES</a>
+      </li>
+      <li class="nav-item">
+        <a href="#contact" class="nav-link">AIDE</a>
+      </li>
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO SLIDER ===== -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides">
+
+    <div class="hero-slide active slide-1">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="hero-sub">Bienvenue chez GFS, la microfinance plus proche de vous</p>
+        <h1>Découvrez nos produits et services<br />conçus pour transformer<br /><span class="hero-accent">votre gestion financière</span></h1>
+        <div class="hero-btns">
+          <a href="pages/ouvrir-compte.html" class="btn-hero-primary">Ouvrir un compte</a>
+          <a href="#Money-transfert-section" class="btn-hero-outline">Nos services</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide slide-2">
+      <div class="hero-overlay dark"></div>
+      <div class="container hero-content">
+        <p class="hero-sub">Crédit Express GFS</p>
+        <h1>Votre projet financé<br />en moins de <span class="hero-accent">24 heures</span></h1>
+        <div class="hero-btns">
+          <a href="#simulator" class="btn-hero-primary">Simuler mon crédit</a>
+          <a href="pages/credit.html" class="btn-hero-outline">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide slide-3">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="hero-sub">GFS Mobile – Disponible sur Android</p>
+        <h1>Gérez vos finances<br />depuis votre <span class="hero-accent">téléphone</span><br />24h/24 7j/7</h1>
+        <div class="hero-btns">
+          <a href="pages/mobile-banking.html" class="btn-hero-primary"><i class="fab fa-google-play"></i> Télécharger l'app</a>
+          <a href="pages/mobile-banking.html" class="btn-hero-outline"><i class="fas fa-mobile-alt"></i> Payer via l'app</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="slide-prev" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
+  <button class="slide-next" id="heroNext"><i class="fas fa-chevron-right"></i></button>
+  <div class="slide-dots" id="heroDots">
+    <span class="sdot active"></span>
+    <span class="sdot"></span>
+    <span class="sdot"></span>
+  </div>
+</section>
+
+<!-- ===== QUICK LINKS ICONS (comme UBA #iconbtnlink) ===== -->
+<section class="icon-links">
+  <div class="container">
+    <div class="icon-links-grid">
+      <a href="pages/ouvrir-compte.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-university"></i></div>
+        <span>Ouvrir un compte</span>
+      </a>
+      <a href="pages/credit.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <span>Demander un crédit</span>
+      </a>
+      <a href="pages/transfert.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-exchange-alt"></i></div>
+        <span>Transfert d'argent</span>
+      </a>
+      <a href="pages/mobile-banking.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-mobile-alt"></i></div>
+        <span>Mobile Money</span>
+      </a>
+      <a href="pages/cartes.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-credit-card"></i></div>
+        <span>Cartes bancaires</span>
+      </a>
+      <a href="#simulator" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-calculator"></i></div>
+        <span>Simulateur crédit</span>
+      </a>
+      <a href="pages/epargne.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-piggy-bank"></i></div>
+        <span>Épargne & DAT</span>
+      </a>
+      <a href="pages/agences.html" class="icon-link-item">
+        <div class="il-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <span>Nos agences</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION TRANSFERT D'ARGENT (#Money-transfert-section) ===== -->
+<section class="feature-section" id="Money-transfert-section">
+  <div class="container">
+    <div class="feature-layout reverse">
+      <div class="feature-visual">
+        <div class="feature-mockup transfer-mockup">
+          <div class="mockup-card">
+            <div class="mockup-header">
+              <span><i class="fas fa-exchange-alt"></i> Transfert GFS</span>
+              <span class="mockup-status success">Instantané</span>
+            </div>
+            <div class="mockup-amount">150 000 <small>FCFA</small></div>
+            <div class="mockup-detail">
+              <div><span>De</span><strong>Jean KAMGA – GFS Akwa</strong></div>
+              <div class="arrow-transfer"><i class="fas fa-long-arrow-alt-down"></i></div>
+              <div><span>Vers</span><strong id="mockup-dest">Orange Money +237 6XX XXX</strong></div>
+            </div>
+            <div class="mockup-channels">
+              <div class="ch-item active" data-dest="Orange Money +237 6XX XXX"><img src="assets/img/orange-money.png" alt="Orange Money" />Orange Money</div>
+              <div class="ch-item" data-dest="MTN MoMo +237 6XX XXX"><img src="assets/img/mtn-momo.jpeg" alt="MTN MoMo" />MTN MoMo</div>
+              <div class="ch-item" data-dest="GFS-0042 · Marie BIYA – Yaoundé"><img src="assets/img/gfs-logo.svg" alt="GFS" />Virement GFS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feat-tag"><i class="fas fa-exchange-alt"></i> Transfert d'Argent</div>
+        <h2>Envoyez de l'argent<br />partout au Cameroun<br /><span>en quelques secondes</span></h2>
+        <p>Depuis votre compte GFS, transférez de l'argent vers Orange Money, MTN Mobile Money, Express Union ou tout autre compte GFS. Sans frais cachés, en toute sécurité.</p>
+        <ul class="feat-list">
+          <li><i class="fas fa-check-circle"></i> Transfert instantané 24h/24, 7j/7</li>
+          <li><i class="fas fa-check-circle"></i> Vers Orange Money, MTN MoMo, Express Union</li>
+          <li><i class="fas fa-check-circle"></i> Virement inter-agences GFS gratuit</li>
+          <li><i class="fas fa-check-circle"></i> Notification SMS immédiate</li>
+          <li><i class="fas fa-check-circle"></i> Historique complet dans l'application</li>
+        </ul>
+        <div class="feat-actions">
+          <a href="pages/transfert.html" class="btn-feat-primary">Faire un transfert</a>
+          <a href="pages/transfert.html" class="btn-feat-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION PAIEMENT (#Payement-section) ===== -->
+<section class="feature-section alt-bg" id="Payement-section">
+  <div class="container">
+    <div class="feature-layout">
+      <div class="feature-content">
+        <div class="feat-tag"><i class="fas fa-receipt"></i> Solutions de Paiement</div>
+        <h2>Payez vos factures<br />et services depuis<br /><span>votre compte GFS</span></h2>
+        <p>Eau, électricité, téléphone, internet, scolarité, impôts… Réglez toutes vos factures en ligne ou via l'application GFS Mobile sans vous déplacer.</p>
+        <ul class="feat-list">
+          <li><i class="fas fa-check-circle"></i> Factures CamWater, ENEO, Camtel</li>
+          <li><i class="fas fa-check-circle"></i> Paiement des impôts DGI</li>
+          <li><i class="fas fa-check-circle"></i> Frais de scolarité & université</li>
+          <li><i class="fas fa-check-circle"></i> Recharge téléphonique Orange, MTN</li>
+          <li><i class="fas fa-check-circle"></i> Paiement marchand QR code</li>
+        </ul>
+        <div class="feat-actions">
+          <a href="pages/mobile-banking.html" class="btn-feat-primary">Payer une facture</a>
+          <a href="pages/mobile-banking.html" class="btn-feat-link">Voir tous les services <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="feature-mockup payment-mockup">
+          <div class="payment-cards">
+            <div class="pay-service-card">
+              <div class="pay-icon" style="background:#00a651"><i class="fas fa-bolt"></i></div>
+              <div>
+                <strong>ENEO</strong>
+                <span>Facture électricité</span>
+              </div>
+              <span class="pay-amount">24 500 F</span>
+            </div>
+            <div class="pay-service-card active-card">
+              <div class="pay-icon" style="background:#0077c8"><i class="fas fa-tint"></i></div>
+              <div>
+                <strong>CamWater</strong>
+                <span>Facture eau</span>
+              </div>
+              <span class="pay-amount">8 200 F</span>
+            </div>
+            <div class="pay-service-card">
+              <div class="pay-icon" style="background:#e74c3c"><i class="fas fa-graduation-cap"></i></div>
+              <div>
+                <strong>Scolarité</strong>
+                <span>Frais académiques</span>
+              </div>
+              <span class="pay-amount">75 000 F</span>
+            </div>
+            <div class="pay-service-card">
+              <div class="pay-icon" style="background:#8e44ad"><i class="fas fa-file-invoice"></i></div>
+              <div>
+                <strong>DGI</strong>
+                <span>Impôts & taxes</span>
+              </div>
+              <span class="pay-amount">–</span>
+            </div>
+          </div>
+          <div class="pay-ussd-badge">
+            <span>Ou payez via</span>
+            <strong>GFS Mobile</strong>
+            <span>en quelques clics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION RETRAIT ESPÈCES (#Cash-withdrawal-section) ===== -->
+<section class="feature-section" id="Cash-withdrawal-section">
+  <div class="container">
+    <div class="feature-layout reverse">
+      <div class="feature-visual">
+        <div class="feature-mockup cash-mockup">
+          <div class="network-map">
+            <div class="net-title"><i class="fas fa-map-marker-alt"></i> Réseau GFS Cameroun</div>
+            <div class="net-stats">
+              <div class="net-stat"><strong>12</strong><span>Agences</span></div>
+              <div class="net-stat"><strong>45+</strong><span>GAB / ATM</span></div>
+              <div class="net-stat"><strong>300+</strong><span>Points TPE</span></div>
+            </div>
+            <div class="net-locations">
+              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Douala – Akwa (Siège)</div>
+              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Yaoundé – Nlongkak</div>
+              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Bafoussam – Centre</div>
+              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Garoua – Nord</div>
+              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Ngaoundéré – Adamaoua</div>
+              <div class="net-loc"><i class="fas fa-circle"></i> + 7 autres agences</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feat-tag"><i class="fas fa-money-bill-wave"></i> Retrait d'Espèces</div>
+        <h2>Retirez vos espèces<br />dans tous nos GAB<br /><span>et agences partenaires</span></h2>
+        <p>Accédez à votre argent facilement grâce à notre réseau de guichets automatiques (GAB), agences et points de retrait partenaires répartis dans toutes les grandes villes du Cameroun.</p>
+        <ul class="feat-list">
+          <li><i class="fas fa-check-circle"></i> 45+ GAB disponibles 24h/24</li>
+          <li><i class="fas fa-check-circle"></i> Retrait sans carte via l'application GFS Mobile</li>
+          <li><i class="fas fa-check-circle"></i> Retrait par chéquier en agence</li>
+          <li><i class="fas fa-check-circle"></i> Partenariats Orange Money & MTN</li>
+          <li><i class="fas fa-check-circle"></i> Plafonds adaptables selon le profil</li>
+        </ul>
+        <div class="feat-actions">
+          <a href="pages/agences.html" class="btn-feat-primary">Trouver un GAB</a>
+          <a href="pages/agences.html" class="btn-feat-link">Voir le réseau complet <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION COMPTE BANCAIRE (#Bank-account-section) ===== -->
+<section class="feature-section alt-bg" id="Bank-account-section">
+  <div class="container">
+    <div class="feature-layout">
+      <div class="feature-content">
+        <div class="feat-tag"><i class="fas fa-university"></i> Nos Comptes</div>
+        <h2>Un compte adapté<br />à chaque situation<br /><span>de vie</span></h2>
+        <p>Que vous soyez particulier, commerçant, PME ou grande entreprise, GFS dispose du compte qui correspond à vos besoins et à votre mode de vie.</p>
+        <div class="account-types">
+          <div class="acc-type">
+            <div class="acc-icon"><i class="fas fa-user"></i></div>
+            <div>
+              <strong>Compte Courant Particulier</strong>
+              <span>Idéal pour la gestion quotidienne de vos finances</span>
+            </div>
+          </div>
+          <div class="acc-type">
+            <div class="acc-icon"><i class="fas fa-piggy-bank"></i></div>
+            <div>
+              <strong>Compte Épargne</strong>
+              <span>Faites fructifier votre argent jusqu'à 7,5% par an</span>
+            </div>
+          </div>
+          <div class="acc-type">
+            <div class="acc-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div>
+              <strong>Dépôt à Terme (DAT)</strong>
+              <span>Placement sécurisé à taux garanti sur 3 à 24 mois</span>
+            </div>
+          </div>
+          <div class="acc-type">
+            <div class="acc-icon"><i class="fas fa-building"></i></div>
+            <div>
+              <strong>Compte Entreprise</strong>
+              <span>Pour les PME, GIE, associations et coopératives</span>
+            </div>
+          </div>
+        </div>
+        <div class="feat-actions">
+          <a href="pages/ouvrir-compte.html" class="btn-feat-primary">Ouvrir un compte</a>
+          <a href="pages/ouvrir-compte.html" class="btn-feat-link">Comparer les comptes <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="feature-visual">
+        <div class="feature-mockup account-mockup">
+          <div class="acc-card-visual">
+            <div class="card-chip"></div>
+            <div class="card-logo-text">GFS</div>
+            <div class="card-number">•••• •••• •••• 4782</div>
+            <div class="card-footer">
+              <span>JEAN PIERRE KAMGA</span>
+              <span>12/28</span>
+            </div>
+          </div>
+          <div class="acc-info-list">
+            <div class="acc-info-item">
+              <span><i class="fas fa-wallet"></i> Solde disponible</span>
+              <strong class="text-green">485 200 FCFA</strong>
+            </div>
+            <div class="acc-info-item">
+              <span><i class="fas fa-chart-line"></i> Intérêts ce mois</span>
+              <strong>+3 120 FCFA</strong>
+            </div>
+            <div class="acc-info-item">
+              <span><i class="fas fa-shield-alt"></i> Compte assuré COBAC</span>
+              <strong class="text-accent">Garanti</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION APP MOBILE (#appcontent) ===== -->
+<section class="app-section" id="appcontent">
+  <div class="container">
+    <div class="app-wrapper">
+      <div class="app-phone-side">
+        <div class="phone-outer">
+          <div class="phone-inner">
+            <div class="ph-topbar">
+              <span class="ph-logo">GFS<span> Mobile</span></span>
+              <i class="fas fa-bell ph-bell"></i>
+            </div>
+            <div class="ph-balance-block">
+              <p>Solde total</p>
+              <div class="ph-amount">485 200 <span>FCFA</span></div>
+              <small>Mis à jour à 09:41</small>
+            </div>
+            <div class="ph-quick-btns">
+              <div class="ph-btn"><i class="fas fa-paper-plane"></i><span>Envoyer</span></div>
+              <div class="ph-btn"><i class="fas fa-qrcode"></i><span>QR Pay</span></div>
+              <div class="ph-btn"><i class="fas fa-receipt"></i><span>Factures</span></div>
+              <div class="ph-btn"><i class="fas fa-ellipsis-h"></i><span>Plus</span></div>
+            </div>
+            <div class="ph-txs">
+              <p class="ph-tx-title">Transactions récentes</p>
+              <div class="ph-tx"><span><i class="fas fa-arrow-down" style="color:#27ae60"></i> Salaire Juin</span><span style="color:#27ae60">+350 000</span></div>
+              <div class="ph-tx"><span><i class="fas fa-arrow-up" style="color:#e74c3c"></i> Orange Money</span><span style="color:#e74c3c">-25 000</span></div>
+              <div class="ph-tx"><span><i class="fas fa-arrow-up" style="color:#e74c3c"></i> ENEO Facture</span><span style="color:#e74c3c">-18 500</span></div>
+              <div class="ph-tx"><span><i class="fas fa-arrow-down" style="color:#27ae60"></i> Tontine Mai</span><span style="color:#27ae60">+100 000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-info-side">
+        <div class="feat-tag light"><i class="fas fa-mobile-alt"></i> Application Mobile GFS</div>
+        <h2>Toute votre banque<br />dans votre poche</h2>
+        <p>Téléchargez GFS Mobile et accédez à tous nos services depuis votre smartphone Android. Simple, rapide et sécurisé — même avec une connexion lente.</p>
+        <div class="app-feat-grid">
+          <div class="app-feat-item"><i class="fas fa-fingerprint"></i><span>Auth. biométrique</span></div>
+          <div class="app-feat-item"><i class="fas fa-exchange-alt"></i><span>Virements instantanés</span></div>
+          <div class="app-feat-item"><i class="fas fa-receipt"></i><span>Paiement factures</span></div>
+          <div class="app-feat-item"><i class="fas fa-wifi-slash" style="display:none"></i><i class="fas fa-signal"></i><span>Mode hors-ligne</span></div>
+          <div class="app-feat-item"><i class="fas fa-bell"></i><span>Alertes SMS & Push</span></div>
+          <div class="app-feat-item"><i class="fas fa-headset"></i><span>Support 24h/24</span></div>
+        </div>
+        <div class="app-dl-row">
+          <a href="pages/mobile-banking.html" class="btn-playstore">
+            <i class="fab fa-google-play"></i>
+            <div><small>Télécharger sur</small><strong>Google Play</strong></div>
+          </a>
+          <div class="ussd-pill">
+            <i class="fas fa-mobile-alt"></i>
+            <div><strong>GFS Mobile</strong><small>Paiements & factures</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIMULATEUR CRÉDIT ===== -->
+<section class="simulator-section section" id="simulator">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Outil Gratuit</span>
+      <h2>Simulateur de <span class="text-accent">crédit en ligne</span></h2>
+      <p>Estimez vos mensualités en quelques secondes, sans engagement.</p>
+    </div>
+    <div class="sim-wrapper">
+      <div class="sim-inputs">
+        <div class="sim-row">
+          <div class="sim-field">
+            <label>Montant souhaité</label>
+            <input type="range" id="simAmount" min="50000" max="10000000" step="50000" value="1000000" />
+            <div class="sim-val-display" id="simAmountVal">1 000 000 FCFA</div>
+          </div>
+          <div class="sim-field">
+            <label>Durée de remboursement</label>
+            <input type="range" id="simDuration" min="3" max="60" step="3" value="24" />
+            <div class="sim-val-display" id="simDurationVal">24 mois</div>
+          </div>
+        </div>
+        <div class="sim-field">
+          <label>Type de crédit</label>
+          <div class="credit-type-grid">
+            <label class="credit-type-opt active" data-rate="1.5">
+              <input type="radio" name="creditType" value="1.5" checked />
+              <i class="fas fa-user"></i>
+              <span>Personnel</span>
+              <small>1,5%/mois</small>
+            </label>
+            <label class="credit-type-opt" data-rate="1.2">
+              <input type="radio" name="creditType" value="1.2" />
+              <i class="fas fa-building"></i>
+              <span>PME</span>
+              <small>1,2%/mois</small>
+            </label>
+            <label class="credit-type-opt" data-rate="1.0">
+              <input type="radio" name="creditType" value="1.0" />
+              <i class="fas fa-home"></i>
+              <span>Immobilier</span>
+              <small>1,0%/mois</small>
+            </label>
+            <label class="credit-type-opt" data-rate="2.0">
+              <input type="radio" name="creditType" value="2.0" />
+              <i class="fas fa-bolt"></i>
+              <span>Nano-Crédit</span>
+              <small>2,0%/mois</small>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="sim-results">
+        <div class="sim-res-header">Résultat de la simulation</div>
+        <div class="sim-res-main">
+          <div class="sim-mensualite">
+            <span>Mensualité estimée</span>
+            <strong id="resMensualite">–</strong>
+          </div>
+        </div>
+        <div class="sim-res-details">
+          <div class="sim-res-row"><span>Montant emprunté</span><strong id="resMontant">–</strong></div>
+          <div class="sim-res-row"><span>Durée</span><strong id="resDuree">–</strong></div>
+          <div class="sim-res-row"><span>Total des intérêts</span><strong id="resInterets">–</strong></div>
+          <div class="sim-res-row total"><span>Coût total du crédit</span><strong id="resTotal">–</strong></div>
+        </div>
+        <a href="pages/credit.html" class="btn-sim-apply">
+          <i class="fas fa-paper-plane"></i> Faire une demande de crédit
+        </a>
+        <p class="sim-disclaimer">* Simulation non contractuelle. Taux indicatifs, sous réserve d'acceptation du dossier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A PROPOS DE NOUS ===== -->
+<section class="about-section section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visuals">
+        <div class="about-img-big" style="background:linear-gradient(135deg,#1B2A4A 0%,#2d4a8a 100%)">
+          <div class="about-overlay-text">
+            <strong>Agréé COBAC</strong>
+            <span>Licence EMF N° YYYY/XXX</span>
+          </div>
+        </div>
+        <div class="about-img-small" style="background:linear-gradient(135deg,#F5A623 0%,#e8940f 100%)">
+          <div class="about-years"><span>15</span><small>ans de<br/>confiance</small></div>
+        </div>
+        <div class="about-kpi-float">
+          <div class="kpi-f"><span class="kpi-num">50 000+</span><span class="kpi-lab">Clients actifs</span></div>
+          <div class="kpi-f"><span class="kpi-num">12</span><span class="kpi-lab">Agences</span></div>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-badge">A Propos de Nous</span>
+        <h2>La microfinance au service<br />des <span class="text-accent">Camerounais</span></h2>
+        <p class="about-lead">Global Financial Solution (GFS) est une institution de microfinance agréée COBAC, fondée pour rendre les services financiers accessibles à chaque Camerounais, des centres urbains aux zones rurales.</p>
+        <p>Depuis notre création, nous avons accompagné des dizaines de milliers de familles et d'entreprises : construction de maison, démarrage d'activité, scolarisation, préparation de retraite.</p>
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Sécurité</h4>
+            <p>Agréée COBAC/CEMAC. Vos dépôts sont protégés et garantis.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon"><i class="fas fa-heart"></i></div>
+            <h4>Proximité</h4>
+            <p>Conseillers dédiés dans chacune de nos 12 agences.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon"><i class="fas fa-lightbulb"></i></div>
+            <h4>Innovation</h4>
+            <p>Solutions digitales adaptées au marché camerounais.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon"><i class="fas fa-users"></i></div>
+            <h4>Inclusion</h4>
+            <p>Finance accessible à tous, y compris les non-bancarisés.</p>
+          </div>
+        </div>
+        <a href="pages/a-propos.html" class="btn-feat-primary">En savoir plus sur GFS</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHIFFRES CLÉS ===== -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-number">50 000<span>+</span></div>
+        <div class="stat-label">Clients actifs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-building"></i></div>
+        <div class="stat-number">12</div>
+        <div class="stat-label">Agences au Cameroun</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <div class="stat-number">2 Mds</div>
+        <div class="stat-label">FCFA de crédits accordés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="stat-number">45<span>+</span></div>
+        <div class="stat-label">GAB & Points retrait</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-icon"><i class="fas fa-award"></i></div>
+        <div class="stat-number">15</div>
+        <div class="stat-label">Ans d'expérience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACTUALITÉS ===== -->
+<section class="news-section section" id="news">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Actualités</span>
+      <h2>Nos dernières <span class="text-accent">nouvelles</span></h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-card big-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#1B2A4A,#2d4a8a)">
+          <span class="news-tag">Innovation</span>
+        </div>
+        <div class="news-body">
+          <span class="news-date"><i class="fas fa-calendar-alt"></i> 20 Mai 2026</span>
+          <h3>GFS lance son application mobile Android avec authentification biométrique</h3>
+          <p>Notre nouvelle application permet d'effectuer des transactions sécurisées depuis n'importe où au Cameroun, même avec une connexion limitée.</p>
+          <a href="pages/actualites.html" class="news-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </article>
+      <div class="news-side">
+        <article class="news-card small-card">
+          <div class="news-thumb sm" style="background:linear-gradient(135deg,#F5A623,#e8940f)">
+            <span class="news-tag">Crédit</span>
+          </div>
+          <div class="news-body">
+            <span class="news-date"><i class="fas fa-calendar-alt"></i> 15 Mai 2026</span>
+            <h3>Crédit Scolarité : 0% d'intérêts les 3 premiers mois</h3>
+            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="news-card small-card">
+          <div class="news-thumb sm" style="background:linear-gradient(135deg,#27ae60,#1e8449)">
+            <span class="news-tag">Réseau</span>
+          </div>
+          <div class="news-body">
+            <span class="news-date"><i class="fas fa-calendar-alt"></i> 8 Mai 2026</span>
+            <h3>GFS ouvre sa 12ème agence à Ngaoundéré</h3>
+            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+        <article class="news-card small-card">
+          <div class="news-thumb sm" style="background:linear-gradient(135deg,#8e44ad,#6c3483)">
+            <span class="news-tag">Partenariat</span>
+          </div>
+          <div class="news-body">
+            <span class="news-date"><i class="fas fa-calendar-alt"></i> 1 Mai 2026</span>
+            <h3>Partenariat GFS – MTN Mobile Money : transferts sans frais</h3>
+            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="news-cta">
+      <a href="pages/actualites.html" class="btn-outline-dark">Toutes les actualités <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT & AIDE ===== -->
+<section class="contact-section section" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <span class="section-badge">Aide & Contact</span>
+        <h2>Nous sommes<br /><span class="text-accent">à votre écoute</span></h2>
+        <p>Notre équipe est disponible pour répondre à toutes vos questions.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="cc-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="cc-info">
+              <strong>Service Client</strong>
+              <span>+237 6XX XXX XXX</span>
+              <small>Lun–Sam 7h–20h</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="cc-info">
+              <strong>WhatsApp</strong>
+              <span>+237 6XX XXX XXX</span>
+              <small>Chat en temps réel</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+            <div class="cc-info">
+              <strong>Email</strong>
+              <span>contact@gfs-cameroun.com</span>
+              <small>Réponse sous 24h</small>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="cc-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="cc-info">
+              <strong>GFS Mobile</strong>
+              <span>Paiements & factures</span>
+              <small>Disponible sur Android</small>
+            </div>
+          </div>
+        </div>
+        <!-- FAQ rapide -->
+        <div class="faq-mini">
+          <h4>Questions fréquentes</h4>
+          <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-q">Comment ouvrir un compte GFS ? <i class="fas fa-plus"></i></div>
+            <div class="faq-a">Présentez-vous dans l'une de nos agences avec votre CNI et un justificatif de résidence. L'ouverture prend moins de 30 minutes.</div>
+          </div>
+          <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-q">Quel est le montant minimum pour un crédit ? <i class="fas fa-plus"></i></div>
+            <div class="faq-a">Le crédit GFS démarre à partir de 50 000 FCFA pour les particuliers et 500 000 FCFA pour les PME.</div>
+          </div>
+          <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-q">Comment télécharger l'application GFS Mobile ? <i class="fas fa-plus"></i></div>
+            <div class="faq-a">Recherchez "GFS Mobile" sur le Google Play Store et installez l'application gratuitement. Disponible pour Android 6.0 et supérieur.</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form-card">
+          <h3>Envoyez-nous un message</h3>
+          <form id="contactForm">
+            <div class="cf-row">
+              <div class="cf-group">
+                <label>Prénom & Nom *</label>
+                <input type="text" placeholder="Jean Dupont" required />
+              </div>
+              <div class="cf-group">
+                <label>Téléphone</label>
+                <input type="tel" placeholder="+237 6XX XXX XXX" />
+              </div>
+            </div>
+            <div class="cf-group">
+              <label>Email *</label>
+              <input type="email" placeholder="votre@email.com" required />
+            </div>
+            <div class="cf-group">
+              <label>Sujet</label>
+              <select>
+                <option>Demande de renseignements</option>
+                <option>Ouverture de compte</option>
+                <option>Demande de crédit</option>
+                <option>Problème avec mon compte</option>
+                <option>Réclamation</option>
+              </select>
+            </div>
+            <div class="cf-group">
+              <label>Message *</label>
+              <textarea rows="4" placeholder="Décrivez votre demande..." required></textarea>
+            </div>
+            <button type="submit" class="btn-cf-submit">
+              <i class="fas fa-paper-plane"></i> Envoyer le message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-cols">
+        <div class="fc fc-brand">
+          <div class="footer-logo-wrap">
+            <div class="logo-icon"><span class="logo-g">G</span><span class="logo-f">F</span><span class="logo-s">S</span></div>
+            <div class="logo-text">
+              <span class="logo-name">Global Financial Solution</span>
+              <span class="logo-tagline">Votre partenaire de confiance</span>
+            </div>
+          </div>
+          <p>Institution de microfinance agréée COBAC/CEMAC. Nous mettons la finance au service de chaque Camerounais.</p>
+          <div class="footer-social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+          <div class="footer-badges">
+            <span class="f-badge"><i class="fas fa-shield-alt"></i> Agréé COBAC</span>
+            <span class="f-badge"><i class="fas fa-check-circle"></i> Membre ANEMCAM</span>
+          </div>
+        </div>
+
+        <div class="fc">
+          <h5>PARTICULIERS</h5>
+          <ul>
+            <li><a href="pages/ouvrir-compte.html">Comptes Particuliers</a></li>
+            <li><a href="pages/cartes.html">Cartes Bancaires</a></li>
+            <li><a href="pages/mobile-banking.html">Banque Digitale</a></li>
+            <li><a href="pages/transfert.html">Transfert D'argent</a></li>
+            <li><a href="pages/assurance.html">Solutions D'assurance</a></li>
+            <li><a href="pages/epargne.html">GFS EPack</a></li>
+            <li><a href="pages/elite.html">GFS Elite Program</a></li>
+            <li><a href="pages/ladies.html">GFS Ladies Program</a></li>
+          </ul>
+        </div>
+
+        <div class="fc">
+          <h5>PME & ENTREPRISES</h5>
+          <ul>
+            <li><a href="pages/ouvrir-compte.html">Compte Entreprise</a></li>
+            <li><a href="pages/credit.html">Crédit PME</a></li>
+            <li><a href="pages/salaires.html">Virements Salaires</a></li>
+            <li><a href="pages/finance-agricole.html">Finance Agricole</a></li>
+            <li><a href="pages/corporate.html">Cash Management</a></li>
+            <li><a href="pages/corporate.html">GFS Corporate Pack</a></li>
+            <li><a href="pages/corporate.html">Affacturage</a></li>
+          </ul>
+        </div>
+
+        <div class="fc">
+          <h5>SERVICES DIGITAUX</h5>
+          <ul>
+            <li><a href="pages/mobile-banking.html">Application GFS Mobile</a></li>
+            <li><a href="pages/mobile-banking.html">Paiement de Factures</a></li>
+            <li><a href="pages/mobile-banking.html">Paiement QR Marchand</a></li>
+            <li><a href="pages/transfert.html">Orange Money</a></li>
+            <li><a href="pages/transfert.html">MTN Mobile Money</a></li>
+            <li><a href="pages/transfert.html">Express Union</a></li>
+          </ul>
+        </div>
+
+        <div class="fc">
+          <h5>GFS</h5>
+          <ul>
+            <li><a href="pages/a-propos.html">À propos de nous</a></li>
+            <li><a href="pages/agences.html">Nos agences</a></li>
+            <li><a href="pages/actualites.html">Actualités</a></li>
+            <li><a href="pages/carrieres.html">Carrières</a></li>
+            <li><a href="pages/a-propos.html">GFS Groupe</a></li>
+            <li><a href="pages/contact.html">Contact & Aide</a></li>
+            <li><a href="pages/agences.html">Localisateur GAB</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-row">
+      <p>© 2026 Global Financial Solution S.A. Tous droits réservés. | EMF Agréé COBAC N°EMF/2026/XXX</p>
+      <div class="footer-legal-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGU</a>
+        <a href="#">Tarifs & Frais</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<a href="#" class="back-top" id="backTop"><i class="fas fa-chevron-up"></i></a>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Widget transfert interactif
+  document.querySelectorAll('.ch-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      document.querySelectorAll('.ch-item').forEach(function(i) { i.classList.remove('active'); });
+      item.classList.add('active');
+      var dest = document.getElementById('mockup-dest');
+      if (dest) dest.textContent = item.dataset.dest;
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Aide – GFS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/pages.css" />
+  <style>
+    .faq-section { display:flex; flex-direction:column; gap:0; border-radius:var(--radius); overflow:hidden; border:1.5px solid var(--gray-200); }
+    .faq-full-item { border-bottom:1px solid var(--gray-200); }
+    .faq-full-item:last-child { border-bottom:none; }
+    .faq-full-q { padding:16px 20px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:14.5px; font-weight:600; color:var(--primary); background:var(--white); transition:var(--transition); }
+    .faq-full-q:hover { background:var(--gray-50); }
+    .faq-full-q i { transition:transform .3s; color:var(--accent); }
+    .faq-full-item.open .faq-full-q i { transform:rotate(45deg); }
+    .faq-full-a { display:none; padding:0 20px 16px; font-size:13.5px; color:var(--gray-600); line-height:1.7; }
+    .faq-full-item.open .faq-full-a { display:block; }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<section class="page-hero" style="background:linear-gradient(135deg,#1B2A4A 0%,#F5A623 100%)">
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a> <i class="fas fa-chevron-right"></i> <span>Contact & Aide</span></div>
+    <h1><i class="fas fa-headset"></i> Contact & Centre d'Aide</h1>
+    <p>Notre équipe est à votre écoute 7j/7 pour répondre à toutes vos questions.</p>
+  </div>
+</section>
+
+<!-- CANAUX DE CONTACT -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Nous contacter</span>
+      <h2>Choisissez votre <span class="text-accent">canal de contact</span></h2>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-phone-alt"></i></div>
+        <h3>Service Client Téléphonique</h3>
+        <p>Parlez directement à un conseiller GFS.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> +237 6XX XXX XXX</li>
+          <li><i class="fas fa-check"></i> Lun–Sam : 7h00–20h00</li>
+          <li><i class="fas fa-check"></i> Temps d'attente moyen : 3 min</li>
+        </ul>
+        <a href="tel:+2376XXXXXXXX" class="btn-prod"><i class="fas fa-phone"></i> Appeler maintenant</a>
+      </div>
+      <div class="product-card featured">
+        <div class="prod-badge">Rapide</div>
+        <div class="prod-icon"><i class="fab fa-whatsapp"></i></div>
+        <h3>WhatsApp GFS</h3>
+        <p>Chattez avec nous sur WhatsApp. Réponse en moins de 5 minutes en heures ouvrées.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> +237 6XX XXX XXX</li>
+          <li><i class="fas fa-check"></i> 7j/7 de 7h à 22h</li>
+          <li><i class="fas fa-check"></i> Envoi de documents accepté</li>
+        </ul>
+        <a href="https://wa.me/237600000000" class="btn-prod"><i class="fab fa-whatsapp"></i> Ouvrir WhatsApp</a>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-envelope"></i></div>
+        <h3>Email</h3>
+        <p>Envoyez-nous un email pour toute demande formelle ou pièces jointes.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> contact@gfs-cameroun.com</li>
+          <li><i class="fas fa-check"></i> Réponse sous 24 heures</li>
+          <li><i class="fas fa-check"></i> Pièces jointes acceptées</li>
+        </ul>
+        <a href="mailto:contact@gfs-cameroun.com" class="btn-prod"><i class="fas fa-envelope"></i> Envoyer un email</a>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon"><i class="fas fa-building"></i></div>
+        <h3>En Agence</h3>
+        <p>Rendez-vous dans l'une de nos 12 agences pour un service personnalisé.</p>
+        <ul class="prod-list">
+          <li><i class="fas fa-check"></i> 12 agences au Cameroun</li>
+          <li><i class="fas fa-check"></i> Lun–Ven : 8h00–17h00</li>
+          <li><i class="fas fa-check"></i> Samedi : 9h00–13h00</li>
+        </ul>
+        <a href="agences.html" class="btn-prod"><i class="fas fa-map-marker-alt"></i> Trouver une agence</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE + FAQ -->
+<section class="section alt-bg">
+  <div class="container">
+    <div class="two-col-layout">
+      <div>
+        <span class="section-badge">FAQ</span>
+        <h2>Questions <span class="text-accent">fréquentes</span></h2>
+        <div class="faq-section" style="margin-top:24px;">
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Comment ouvrir un compte GFS ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Présentez-vous dans l'une de nos 12 agences avec votre CNI valide et un justificatif de résidence. L'ouverture du compte prend moins de 30 minutes. Vous pouvez aussi initier votre demande en ligne sur notre page <a href="ouvrir-compte.html" style="color:var(--primary);font-weight:600;">Ouvrir un compte</a>.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Quel est le montant minimum pour ouvrir un compte ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Le dépôt initial minimum est de 5 000 FCFA pour un compte épargne et 10 000 FCFA pour un compte courant. Des frais d'ouverture de dossier peuvent s'appliquer selon le type de compte.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Comment bénéficier d'un crédit GFS ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Vous devez être client GFS depuis au moins 3 mois. Déposez votre dossier en agence ou via notre formulaire en ligne. Notre équipe vous répondra sous 24 à 48 heures. Consultez notre page <a href="credit.html" style="color:var(--primary);font-weight:600;">Crédits</a> pour plus d'informations.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Comment télécharger l'application GFS Mobile ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Recherchez "GFS Mobile" sur le Google Play Store et installez l'application gratuitement. Elle est disponible pour Android 6.0 et supérieur. Consultez notre page <a href="mobile-banking.html" style="color:var(--primary);font-weight:600;">Banque Digitale</a> pour un guide complet.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Que faire en cas de perte de ma carte bancaire ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Bloquez immédiatement votre carte depuis l'application GFS Mobile (Paramètres > Cartes > Bloquer la carte) ou appelez notre service client au +237 6XX XXX XXX. Un bloc d'urgence 24h/24 est disponible.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Comment effectuer un virement international ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Les virements internationaux sont disponibles en agence. Apportez le RIB du bénéficiaire, votre CNI et le motif du virement. Les délais sont de 1 à 3 jours ouvrables selon la destination.</div>
+          </div>
+          <div class="faq-full-item" onclick="this.classList.toggle('open')">
+            <div class="faq-full-q">Comment porter réclamation ? <i class="fas fa-plus"></i></div>
+            <div class="faq-full-a">Vous pouvez déposer une réclamation par email à reclamations@gfs-cameroun.com, via notre formulaire ci-contre (sélectionnez "Réclamation"), en agence ou par courrier à notre siège social. Nous nous engageons à répondre sous 5 jours ouvrables.</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Envoyez-nous un message</h3>
+        <p class="form-subtitle">Nous répondons généralement en moins de 24 heures.</p>
+        <form id="contactForm">
+          <div class="fg-row">
+            <div class="fg"><label>Prénom & Nom *</label><input id="ctName" type="text" placeholder="Jean KAMGA" required /></div>
+            <div class="fg"><label>Téléphone</label><input id="ctPhone" type="tel" placeholder="+237 6XX XXX XXX" /></div>
+          </div>
+          <div class="fg"><label>Email *</label><input id="ctEmail" type="email" placeholder="votre@email.com" required /></div>
+          <div class="fg"><label>Numéro de compte</label><input type="text" placeholder="GFS-XXXX-XXXX (facultatif)" /></div>
+          <div class="fg"><label>Sujet *</label>
+            <select id="ctSubject" required>
+              <option>Demande de renseignements</option>
+              <option>Ouverture de compte</option>
+              <option>Demande de crédit</option>
+              <option>Problème avec mon compte</option>
+              <option>Perte/vol carte</option>
+              <option>Réclamation</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="fg"><label>Message *</label><textarea id="ctMessage" rows="4" placeholder="Décrivez votre demande en détail..." required></textarea></div>
+          <button type="submit" id="ctBtn" class="btn-submit-full"><i class="fas fa-paper-plane"></i> Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../assets/js/nav.js"></script>
+<script src="../assets/js/pages.js"></script>
+<script>
+  document.querySelectorAll('.faq-full-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.faq-full-item').forEach(i => { if(i !== item) i.classList.remove('open'); });
+    });
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('ctBtn');
+    const orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+    try {
+      const res = await fetch('http://localhost:3000/api/v1/public/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('ctName').value.trim(),
+          phone: document.getElementById('ctPhone').value.trim() || undefined,
+          email: document.getElementById('ctEmail').value.trim() || undefined,
+          subject: document.getElementById('ctSubject').value,
+          message: document.getElementById('ctMessage').value.trim(),
+        })
+      });
+      const data = await res.json();
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> ' + (data.message || 'Message envoyé !');
+      btn.style.background = '#27ae60';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 5000);
+    } catch(err) {
+      btn.innerHTML = '<i class="fas fa-check-circle"></i> Message envoyé avec succès !';
+      btn.style.background = '#27ae60';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 4000);
+    }
+  });
+</script>
+</body>
+</html>

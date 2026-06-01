@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil – GFS Banque en Ligne</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="../../assets/css/client-portal.css" />
+</head>
+<body class="cp-body">
+<div id="sidebarMount"></div>
+
+<div class="cp-main">
+  <header class="cp-topbar">
+    <div class="cp-topbar-title">
+      <h1>Mon Profil</h1>
+      <p>Vos informations personnelles et sécurité</p>
+    </div>
+  </header>
+
+  <div class="cp-content">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" id="profilGrid">
+      <!-- Infos client -->
+      <div class="cp-form-card">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+          <div style="width:64px;height:64px;background:var(--cp-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:var(--cp-accent);" id="profilAvatar">?</div>
+          <div>
+            <h2 style="margin-bottom:2px;" id="profilName">Chargement...</h2>
+            <p class="subtitle" style="margin-bottom:0;" id="profilNumber">–</p>
+          </div>
+        </div>
+
+        <div id="profilLoading" class="cp-loading"><div class="cp-spinner"></div></div>
+        <div id="profilInfo" style="display:none;">
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Numéro Adhérent</span>
+              <strong id="piClientNum">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Prénom & Nom</span>
+              <strong id="piFullName">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Téléphone</span>
+              <strong id="piPhone">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Email</span>
+              <strong id="piEmail">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Date de naissance</span>
+              <strong id="piDob">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--cp-gray-200);font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Agence</span>
+              <strong id="piAgency">–</strong>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:12px 0;font-size:13.5px;">
+              <span style="color:var(--cp-gray-600);font-weight:600;">Statut du compte</span>
+              <span class="cp-badge active" id="piStatus">Actif</span>
+            </div>
+          </div>
+        </div>
+        <div class="cp-alert info" style="margin-top:16px;">
+          <i class="fas fa-info-circle"></i>
+          Pour modifier vos informations personnelles, contactez votre agence GFS.
+        </div>
+      </div>
+
+      <!-- Changement de mot de passe -->
+      <div>
+        <div class="cp-form-card" style="margin-bottom:20px;">
+          <h2><i class="fas fa-lock" style="color:var(--cp-accent);margin-right:8px;font-size:18px;"></i>Changer le mot de passe</h2>
+          <p class="subtitle">Votre mot de passe doit contenir au moins 6 caractères.</p>
+          <div id="pwdMsg"></div>
+          <form id="pwdForm">
+            <div class="cp-fg">
+              <label>Mot de passe actuel *</label>
+              <input type="password" id="oldPwd" placeholder="Mot de passe actuel" required />
+            </div>
+            <div class="cp-fg">
+              <label>Nouveau mot de passe *</label>
+              <input type="password" id="newPwd" placeholder="Nouveau mot de passe (min. 6 caractères)" required minlength="6" />
+            </div>
+            <div class="cp-fg">
+              <label>Confirmer le nouveau mot de passe *</label>
+              <input type="password" id="confirmPwd" placeholder="Confirmez le mot de passe" required />
+            </div>
+            <button type="submit" class="cp-btn-primary" id="pwdBtn">
+              <i class="fas fa-save"></i> Changer le mot de passe
+            </button>
+          </form>
+        </div>
+
+        <div class="cp-form-card">
+          <h2><i class="fas fa-key" style="color:var(--cp-accent);margin-right:8px;font-size:18px;"></i>Changer le code PIN</h2>
+          <p class="subtitle">Votre PIN doit contenir 4 à 6 chiffres.</p>
+          <div id="pinMsg"></div>
+          <form id="pinForm">
+            <div class="cp-fg">
+              <label>PIN actuel *</label>
+              <input type="password" id="oldPin" placeholder="PIN actuel" required maxlength="6" />
+            </div>
+            <div class="cp-fg">
+              <label>Nouveau PIN *</label>
+              <input type="password" id="newPin" placeholder="Nouveau PIN (4 à 6 chiffres)" required minlength="4" maxlength="6" pattern="[0-9]{4,6}" />
+            </div>
+            <button type="submit" class="cp-btn-primary" id="pinBtn">
+              <i class="fas fa-save"></i> Changer le PIN
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../assets/js/client-api.js"></script>
+<script src="_layout.js"></script>
+<script>
+if (!requireAuth()) throw new Error('auth');
+renderSidebar('profil');
+
+async function loadProfil() {
+  try {
+    const client = await loadProfile();
+    if (!client) return;
+
+    const fn = client.firstName || '';
+    const ln = client.lastName || '';
+    const full = (fn + ' ' + ln).trim();
+    document.getElementById('profilAvatar').textContent = (full || 'C')[0].toUpperCase();
+    document.getElementById('profilName').textContent = full || client.clientNumber;
+    document.getElementById('profilNumber').textContent = client.clientNumber || '';
+
+    document.getElementById('piClientNum').textContent = client.clientNumber || '–';
+    document.getElementById('piFullName').textContent  = full || '–';
+    document.getElementById('piPhone').textContent     = client.phone || '–';
+    document.getElementById('piEmail').textContent     = client.email || '–';
+    document.getElementById('piDob').textContent       = client.birthDate ? fmtDate(client.birthDate) : '–';
+    document.getElementById('piAgency').textContent    = client.agency ? client.agency.name : '–';
+    document.getElementById('piStatus').textContent    = client.status === 'ACTIVE' ? 'Actif' : client.status;
+    document.getElementById('piStatus').className      = 'cp-badge ' + (client.status === 'ACTIVE' ? 'active' : 'danger');
+
+    document.getElementById('profilLoading').style.display = 'none';
+    document.getElementById('profilInfo').style.display = 'block';
+  } catch(e) {
+    document.getElementById('profilLoading').innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + e.message + '</div>';
+  }
+}
+
+// Changement mot de passe
+document.getElementById('pwdForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('pwdBtn');
+  const msgDiv = document.getElementById('pwdMsg');
+  const newPwd = document.getElementById('newPwd').value;
+  const confirm = document.getElementById('confirmPwd').value;
+
+  if (newPwd !== confirm) {
+    msgDiv.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>Les mots de passe ne correspondent pas.</div>';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement...';
+  msgDiv.innerHTML = '';
+
+  try {
+    await api('/client-auth/change-password', {
+      method: 'PATCH',
+      body: { oldPassword: document.getElementById('oldPwd').value, newPassword: newPwd }
+    });
+    msgDiv.innerHTML = '<div class="cp-alert success"><i class="fas fa-check-circle"></i>Mot de passe modifié avec succès.</div>';
+    document.getElementById('pwdForm').reset();
+  } catch(err) {
+    msgDiv.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + err.message + '</div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-save"></i> Changer le mot de passe';
+  }
+});
+
+// Changement PIN
+document.getElementById('pinForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('pinBtn');
+  const msgDiv = document.getElementById('pinMsg');
+  const newPin = document.getElementById('newPin').value;
+
+  if (!/^\d{4,6}$/.test(newPin)) {
+    msgDiv.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>Le PIN doit contenir 4 à 6 chiffres.</div>';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement...';
+  msgDiv.innerHTML = '';
+
+  try {
+    await api('/client-auth/change-pin', {
+      method: 'PATCH',
+      body: { oldPin: document.getElementById('oldPin').value, newPin }
+    });
+    msgDiv.innerHTML = '<div class="cp-alert success"><i class="fas fa-check-circle"></i>PIN modifié avec succès.</div>';
+    document.getElementById('pinForm').reset();
+  } catch(err) {
+    msgDiv.innerHTML = '<div class="cp-alert error"><i class="fas fa-exclamation-circle"></i>' + err.message + '</div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-save"></i> Changer le PIN';
+  }
+});
+
+loadProfil();
+</script>
+</body>
+</html>
