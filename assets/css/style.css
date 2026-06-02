@@ -36,7 +36,7 @@ img { max-width: 100%; display: block; }
 button { cursor: pointer; border: none; background: none; font-family: var(--font); }
 input, select, textarea { font-family: var(--font); }
 .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-.section { padding: 80px 0; }
+.section { padding: 60px 0; }
 .text-accent { color: var(--accent); }
 
 /* ===== SECONDARY BAR (Top nav UBA style) ===== */
@@ -357,8 +357,32 @@ input, select, textarea { font-family: var(--font); }
 }
 .icon-link-item:hover .il-icon { background: rgba(255,255,255,.15); color: var(--accent); }
 
+/* ===== SERVICES TABS ===== */
+.services-tabs { background: var(--white); }
+.tabs-nav {
+  display: flex; gap: 0;
+  border-bottom: 2px solid var(--gray-200);
+  margin-bottom: 40px;
+  overflow-x: auto;
+}
+.tab-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px;
+  font-size: 14px; font-weight: 700;
+  color: var(--gray-600);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+.tab-btn:hover { color: var(--primary); }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--accent); }
+.tab-btn i { font-size: 13px; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
 /* ===== FEATURE SECTIONS ===== */
-.feature-section { padding: 80px 0; background: var(--white); }
+.feature-section { padding: 60px 0; background: var(--white); }
 .feature-section.alt-bg { background: var(--gray-50); }
 .feature-layout {
   display: grid;
@@ -545,7 +569,7 @@ input, select, textarea { font-family: var(--font); }
 /* ===== APP SECTION ===== */
 .app-section {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  padding: 80px 0; overflow: hidden; position: relative;
+  padding: 60px 0; overflow: hidden; position: relative;
 }
 .app-section::after {
   content: '';
@@ -779,6 +803,9 @@ input, select, textarea { font-family: var(--font); }
 
 /* ===== CONTACT ===== */
 .contact-section { background: var(--white); }
+.contact-cards-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+.contact-faq .faq-items-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.contact-faq h4 { text-align: center; margin-bottom: 20px; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
 .contact-left h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--primary); margin-bottom: 12px; line-height: 1.25; }
 .contact-left > p { font-size: 14.5px; color: var(--gray-600); margin-bottom: 28px; }
@@ -915,6 +942,10 @@ input, select, textarea { font-family: var(--font); }
   .icon-links-grid { grid-template-columns: repeat(4, 1fr); }
   .mockup-card, .payment-cards, .network-map, .acc-card-visual, .acc-info-list { max-width: 100%; }
   .contact-cards { grid-template-columns: 1fr; }
+  .contact-cards-row { grid-template-columns: repeat(2, 1fr); }
+  .contact-faq .faq-items-row { grid-template-columns: 1fr; }
+  .tabs-nav { gap: 0; }
+  .tab-btn { padding: 12px 16px; font-size: 13px; }
   .about-pillars { grid-template-columns: 1fr; }
   .credit-type-grid { grid-template-columns: repeat(2, 1fr); }
   .sim-row { grid-template-columns: 1fr; }

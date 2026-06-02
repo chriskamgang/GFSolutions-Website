@@ -1,6 +1,6 @@
 /* ===== GFS CLIENT API — Module partagé espace client ===== */
 
-const GFS_API = 'http://localhost:3000/api/v1';
+const GFS_API = 'https://backend.gfinancials.com/api/v1';
 
 /* --- Token & session --- */
 function getToken()   { return localStorage.getItem('gfs_client_token'); }

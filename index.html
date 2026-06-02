@@ -60,7 +60,7 @@
   <div class="container navbar-inner">
 
     <!-- Bouton Banque en Ligne (comme UBA à gauche) -->
-    <a href="pages/ouvrir-compte.html" class="btn-online-banking">
+    <a href="pages/banque-en-ligne.html" class="btn-online-banking">
       <i class="fas fa-lock"></i> BANQUE EN LIGNE
     </a>
 
@@ -319,233 +319,206 @@
   </div>
 </section>
 
-<!-- ===== SECTION TRANSFERT D'ARGENT (#Money-transfert-section) ===== -->
-<section class="feature-section" id="Money-transfert-section">
+<!-- ===== SECTIONS SERVICES (Tabbed) ===== -->
+<section class="services-tabs section" id="services">
   <div class="container">
-    <div class="feature-layout reverse">
-      <div class="feature-visual">
-        <div class="feature-mockup transfer-mockup">
-          <div class="mockup-card">
-            <div class="mockup-header">
-              <span><i class="fas fa-exchange-alt"></i> Transfert GFS</span>
-              <span class="mockup-status success">Instantané</span>
-            </div>
-            <div class="mockup-amount">150 000 <small>FCFA</small></div>
-            <div class="mockup-detail">
-              <div><span>De</span><strong>Jean KAMGA – GFS Akwa</strong></div>
-              <div class="arrow-transfer"><i class="fas fa-long-arrow-alt-down"></i></div>
-              <div><span>Vers</span><strong id="mockup-dest">Orange Money +237 6XX XXX</strong></div>
-            </div>
-            <div class="mockup-channels">
-              <div class="ch-item active" data-dest="Orange Money +237 6XX XXX"><img src="assets/img/orange-money.png" alt="Orange Money" />Orange Money</div>
-              <div class="ch-item" data-dest="MTN MoMo +237 6XX XXX"><img src="assets/img/mtn-momo.jpeg" alt="MTN MoMo" />MTN MoMo</div>
-              <div class="ch-item" data-dest="GFS-0042 · Marie BIYA – Yaoundé"><img src="assets/img/gfs-logo.svg" alt="GFS" />Virement GFS</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="feature-content">
-        <div class="feat-tag"><i class="fas fa-exchange-alt"></i> Transfert d'Argent</div>
-        <h2>Envoyez de l'argent<br />partout au Cameroun<br /><span>en quelques secondes</span></h2>
-        <p>Depuis votre compte GFS, transférez de l'argent vers Orange Money, MTN Mobile Money, Express Union ou tout autre compte GFS. Sans frais cachés, en toute sécurité.</p>
-        <ul class="feat-list">
-          <li><i class="fas fa-check-circle"></i> Transfert instantané 24h/24, 7j/7</li>
-          <li><i class="fas fa-check-circle"></i> Vers Orange Money, MTN MoMo, Express Union</li>
-          <li><i class="fas fa-check-circle"></i> Virement inter-agences GFS gratuit</li>
-          <li><i class="fas fa-check-circle"></i> Notification SMS immédiate</li>
-          <li><i class="fas fa-check-circle"></i> Historique complet dans l'application</li>
-        </ul>
-        <div class="feat-actions">
-          <a href="pages/transfert.html" class="btn-feat-primary">Faire un transfert</a>
-          <a href="pages/transfert.html" class="btn-feat-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="transfert"><i class="fas fa-exchange-alt"></i> Transfert</button>
+      <button class="tab-btn" data-tab="paiement"><i class="fas fa-receipt"></i> Paiement</button>
+      <button class="tab-btn" data-tab="retrait"><i class="fas fa-money-bill-wave"></i> Retrait</button>
+      <button class="tab-btn" data-tab="compte"><i class="fas fa-university"></i> Nos Comptes</button>
     </div>
-  </div>
-</section>
 
-<!-- ===== SECTION PAIEMENT (#Payement-section) ===== -->
-<section class="feature-section alt-bg" id="Payement-section">
-  <div class="container">
-    <div class="feature-layout">
-      <div class="feature-content">
-        <div class="feat-tag"><i class="fas fa-receipt"></i> Solutions de Paiement</div>
-        <h2>Payez vos factures<br />et services depuis<br /><span>votre compte GFS</span></h2>
-        <p>Eau, électricité, téléphone, internet, scolarité, impôts… Réglez toutes vos factures en ligne ou via l'application GFS Mobile sans vous déplacer.</p>
-        <ul class="feat-list">
-          <li><i class="fas fa-check-circle"></i> Factures CamWater, ENEO, Camtel</li>
-          <li><i class="fas fa-check-circle"></i> Paiement des impôts DGI</li>
-          <li><i class="fas fa-check-circle"></i> Frais de scolarité & université</li>
-          <li><i class="fas fa-check-circle"></i> Recharge téléphonique Orange, MTN</li>
-          <li><i class="fas fa-check-circle"></i> Paiement marchand QR code</li>
-        </ul>
-        <div class="feat-actions">
-          <a href="pages/mobile-banking.html" class="btn-feat-primary">Payer une facture</a>
-          <a href="pages/mobile-banking.html" class="btn-feat-link">Voir tous les services <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-      <div class="feature-visual">
-        <div class="feature-mockup payment-mockup">
-          <div class="payment-cards">
-            <div class="pay-service-card">
-              <div class="pay-icon" style="background:#00a651"><i class="fas fa-bolt"></i></div>
-              <div>
-                <strong>ENEO</strong>
-                <span>Facture électricité</span>
+    <!-- Transfert -->
+    <div class="tab-pane active" id="tab-transfert">
+      <div class="feature-layout reverse">
+        <div class="feature-visual">
+          <div class="feature-mockup transfer-mockup">
+            <div class="mockup-card">
+              <div class="mockup-header">
+                <span><i class="fas fa-exchange-alt"></i> Transfert GFS</span>
+                <span class="mockup-status success">Instantané</span>
               </div>
-              <span class="pay-amount">24 500 F</span>
-            </div>
-            <div class="pay-service-card active-card">
-              <div class="pay-icon" style="background:#0077c8"><i class="fas fa-tint"></i></div>
-              <div>
-                <strong>CamWater</strong>
-                <span>Facture eau</span>
+              <div class="mockup-amount">150 000 <small>FCFA</small></div>
+              <div class="mockup-detail">
+                <div><span>De</span><strong>Jean KAMGA – GFS Akwa</strong></div>
+                <div class="arrow-transfer"><i class="fas fa-long-arrow-alt-down"></i></div>
+                <div><span>Vers</span><strong id="mockup-dest">Orange Money +237 6XX XXX</strong></div>
               </div>
-              <span class="pay-amount">8 200 F</span>
-            </div>
-            <div class="pay-service-card">
-              <div class="pay-icon" style="background:#e74c3c"><i class="fas fa-graduation-cap"></i></div>
-              <div>
-                <strong>Scolarité</strong>
-                <span>Frais académiques</span>
+              <div class="mockup-channels">
+                <div class="ch-item active" data-dest="Orange Money +237 6XX XXX"><img src="assets/img/orange-money.png" alt="Orange Money" />Orange Money</div>
+                <div class="ch-item" data-dest="MTN MoMo +237 6XX XXX"><img src="assets/img/mtn-momo.jpeg" alt="MTN MoMo" />MTN MoMo</div>
+                <div class="ch-item" data-dest="GFS-0042 · Marie BIYA – Yaoundé"><img src="assets/img/gfs-logo.svg" alt="GFS" />Virement GFS</div>
               </div>
-              <span class="pay-amount">75 000 F</span>
-            </div>
-            <div class="pay-service-card">
-              <div class="pay-icon" style="background:#8e44ad"><i class="fas fa-file-invoice"></i></div>
-              <div>
-                <strong>DGI</strong>
-                <span>Impôts & taxes</span>
-              </div>
-              <span class="pay-amount">–</span>
             </div>
           </div>
-          <div class="pay-ussd-badge">
-            <span>Ou payez via</span>
-            <strong>GFS Mobile</strong>
-            <span>en quelques clics</span>
+        </div>
+        <div class="feature-content">
+          <div class="feat-tag"><i class="fas fa-exchange-alt"></i> Transfert d'Argent</div>
+          <h2>Envoyez de l'argent<br />partout au Cameroun<br /><span>en quelques secondes</span></h2>
+          <p>Depuis votre compte GFS, transférez vers Orange Money, MTN MoMo, Express Union ou tout autre compte GFS. Sans frais cachés, en toute sécurité.</p>
+          <ul class="feat-list">
+            <li><i class="fas fa-check-circle"></i> Transfert instantané 24h/24, 7j/7</li>
+            <li><i class="fas fa-check-circle"></i> Vers Orange Money, MTN MoMo, Express Union</li>
+            <li><i class="fas fa-check-circle"></i> Virement inter-agences GFS gratuit</li>
+            <li><i class="fas fa-check-circle"></i> Notification SMS immédiate</li>
+          </ul>
+          <div class="feat-actions">
+            <a href="pages/transfert.html" class="btn-feat-primary">Faire un transfert</a>
+            <a href="pages/transfert.html" class="btn-feat-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===== SECTION RETRAIT ESPÈCES (#Cash-withdrawal-section) ===== -->
-<section class="feature-section" id="Cash-withdrawal-section">
-  <div class="container">
-    <div class="feature-layout reverse">
-      <div class="feature-visual">
-        <div class="feature-mockup cash-mockup">
-          <div class="network-map">
-            <div class="net-title"><i class="fas fa-map-marker-alt"></i> Réseau GFS Cameroun</div>
-            <div class="net-stats">
-              <div class="net-stat"><strong>12</strong><span>Agences</span></div>
-              <div class="net-stat"><strong>45+</strong><span>GAB / ATM</span></div>
-              <div class="net-stat"><strong>300+</strong><span>Points TPE</span></div>
-            </div>
-            <div class="net-locations">
-              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Douala – Akwa (Siège)</div>
-              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Yaoundé – Nlongkak</div>
-              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Bafoussam – Centre</div>
-              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Garoua – Nord</div>
-              <div class="net-loc"><i class="fas fa-circle active-dot"></i> Ngaoundéré – Adamaoua</div>
-              <div class="net-loc"><i class="fas fa-circle"></i> + 7 autres agences</div>
+    <!-- Paiement -->
+    <div class="tab-pane" id="tab-paiement">
+      <div class="feature-layout">
+        <div class="feature-content">
+          <div class="feat-tag"><i class="fas fa-receipt"></i> Solutions de Paiement</div>
+          <h2>Payez vos factures<br />et services depuis<br /><span>votre compte GFS</span></h2>
+          <p>Eau, électricité, scolarité, impôts… Réglez toutes vos factures en ligne ou via GFS Mobile sans vous déplacer.</p>
+          <ul class="feat-list">
+            <li><i class="fas fa-check-circle"></i> Factures CamWater, ENEO, Camtel</li>
+            <li><i class="fas fa-check-circle"></i> Paiement des impôts DGI</li>
+            <li><i class="fas fa-check-circle"></i> Frais de scolarité & université</li>
+            <li><i class="fas fa-check-circle"></i> Paiement marchand QR code</li>
+          </ul>
+          <div class="feat-actions">
+            <a href="pages/mobile-banking.html" class="btn-feat-primary">Payer une facture</a>
+            <a href="pages/mobile-banking.html" class="btn-feat-link">Voir tous les services <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-mockup payment-mockup">
+            <div class="payment-cards">
+              <div class="pay-service-card">
+                <div class="pay-icon" style="background:#00a651"><i class="fas fa-bolt"></i></div>
+                <div><strong>ENEO</strong><span>Facture électricité</span></div>
+                <span class="pay-amount">24 500 F</span>
+              </div>
+              <div class="pay-service-card active-card">
+                <div class="pay-icon" style="background:#0077c8"><i class="fas fa-tint"></i></div>
+                <div><strong>CamWater</strong><span>Facture eau</span></div>
+                <span class="pay-amount">8 200 F</span>
+              </div>
+              <div class="pay-service-card">
+                <div class="pay-icon" style="background:#e74c3c"><i class="fas fa-graduation-cap"></i></div>
+                <div><strong>Scolarité</strong><span>Frais académiques</span></div>
+                <span class="pay-amount">75 000 F</span>
+              </div>
+              <div class="pay-service-card">
+                <div class="pay-icon" style="background:#8e44ad"><i class="fas fa-file-invoice"></i></div>
+                <div><strong>DGI</strong><span>Impôts & taxes</span></div>
+                <span class="pay-amount">–</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="feature-content">
-        <div class="feat-tag"><i class="fas fa-money-bill-wave"></i> Retrait d'Espèces</div>
-        <h2>Retirez vos espèces<br />dans tous nos GAB<br /><span>et agences partenaires</span></h2>
-        <p>Accédez à votre argent facilement grâce à notre réseau de guichets automatiques (GAB), agences et points de retrait partenaires répartis dans toutes les grandes villes du Cameroun.</p>
-        <ul class="feat-list">
-          <li><i class="fas fa-check-circle"></i> 45+ GAB disponibles 24h/24</li>
-          <li><i class="fas fa-check-circle"></i> Retrait sans carte via l'application GFS Mobile</li>
-          <li><i class="fas fa-check-circle"></i> Retrait par chéquier en agence</li>
-          <li><i class="fas fa-check-circle"></i> Partenariats Orange Money & MTN</li>
-          <li><i class="fas fa-check-circle"></i> Plafonds adaptables selon le profil</li>
-        </ul>
-        <div class="feat-actions">
-          <a href="pages/agences.html" class="btn-feat-primary">Trouver un GAB</a>
-          <a href="pages/agences.html" class="btn-feat-link">Voir le réseau complet <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- ===== SECTION COMPTE BANCAIRE (#Bank-account-section) ===== -->
-<section class="feature-section alt-bg" id="Bank-account-section">
-  <div class="container">
-    <div class="feature-layout">
-      <div class="feature-content">
-        <div class="feat-tag"><i class="fas fa-university"></i> Nos Comptes</div>
-        <h2>Un compte adapté<br />à chaque situation<br /><span>de vie</span></h2>
-        <p>Que vous soyez particulier, commerçant, PME ou grande entreprise, GFS dispose du compte qui correspond à vos besoins et à votre mode de vie.</p>
-        <div class="account-types">
-          <div class="acc-type">
-            <div class="acc-icon"><i class="fas fa-user"></i></div>
-            <div>
-              <strong>Compte Courant Particulier</strong>
-              <span>Idéal pour la gestion quotidienne de vos finances</span>
-            </div>
-          </div>
-          <div class="acc-type">
-            <div class="acc-icon"><i class="fas fa-piggy-bank"></i></div>
-            <div>
-              <strong>Compte Épargne</strong>
-              <span>Faites fructifier votre argent jusqu'à 7,5% par an</span>
-            </div>
-          </div>
-          <div class="acc-type">
-            <div class="acc-icon"><i class="fas fa-calendar-alt"></i></div>
-            <div>
-              <strong>Dépôt à Terme (DAT)</strong>
-              <span>Placement sécurisé à taux garanti sur 3 à 24 mois</span>
-            </div>
-          </div>
-          <div class="acc-type">
-            <div class="acc-icon"><i class="fas fa-building"></i></div>
-            <div>
-              <strong>Compte Entreprise</strong>
-              <span>Pour les PME, GIE, associations et coopératives</span>
+    <!-- Retrait -->
+    <div class="tab-pane" id="tab-retrait">
+      <div class="feature-layout reverse">
+        <div class="feature-visual">
+          <div class="feature-mockup cash-mockup">
+            <div class="network-map">
+              <div class="net-title"><i class="fas fa-map-marker-alt"></i> Réseau GFS Cameroun</div>
+              <div class="net-stats">
+                <div class="net-stat"><strong>12</strong><span>Agences</span></div>
+                <div class="net-stat"><strong>45+</strong><span>GAB / ATM</span></div>
+                <div class="net-stat"><strong>300+</strong><span>Points TPE</span></div>
+              </div>
+              <div class="net-locations">
+                <div class="net-loc"><i class="fas fa-circle active-dot"></i> Douala – Akwa (Siège)</div>
+                <div class="net-loc"><i class="fas fa-circle active-dot"></i> Yaoundé – Nlongkak</div>
+                <div class="net-loc"><i class="fas fa-circle active-dot"></i> Bafoussam – Centre</div>
+                <div class="net-loc"><i class="fas fa-circle active-dot"></i> Garoua – Nord</div>
+                <div class="net-loc"><i class="fas fa-circle active-dot"></i> Ngaoundéré – Adamaoua</div>
+                <div class="net-loc"><i class="fas fa-circle"></i> + 7 autres agences</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="feat-actions">
-          <a href="pages/ouvrir-compte.html" class="btn-feat-primary">Ouvrir un compte</a>
-          <a href="pages/ouvrir-compte.html" class="btn-feat-link">Comparer les comptes <i class="fas fa-arrow-right"></i></a>
+        <div class="feature-content">
+          <div class="feat-tag"><i class="fas fa-money-bill-wave"></i> Retrait d'Espèces</div>
+          <h2>Retirez vos espèces<br />dans tous nos GAB<br /><span>et agences partenaires</span></h2>
+          <p>Accédez à votre argent facilement grâce à notre réseau de GAB, agences et points de retrait dans toutes les grandes villes du Cameroun.</p>
+          <ul class="feat-list">
+            <li><i class="fas fa-check-circle"></i> 45+ GAB disponibles 24h/24</li>
+            <li><i class="fas fa-check-circle"></i> Retrait sans carte via GFS Mobile</li>
+            <li><i class="fas fa-check-circle"></i> Partenariats Orange Money & MTN</li>
+            <li><i class="fas fa-check-circle"></i> Plafonds adaptables selon le profil</li>
+          </ul>
+          <div class="feat-actions">
+            <a href="pages/agences.html" class="btn-feat-primary">Trouver un GAB</a>
+            <a href="pages/agences.html" class="btn-feat-link">Voir le réseau complet <i class="fas fa-arrow-right"></i></a>
+          </div>
         </div>
       </div>
-      <div class="feature-visual">
-        <div class="feature-mockup account-mockup">
-          <div class="acc-card-visual">
-            <div class="card-chip"></div>
-            <div class="card-logo-text">GFS</div>
-            <div class="card-number">•••• •••• •••• 4782</div>
-            <div class="card-footer">
-              <span>JEAN PIERRE KAMGA</span>
-              <span>12/28</span>
+    </div>
+
+    <!-- Nos Comptes -->
+    <div class="tab-pane" id="tab-compte">
+      <div class="feature-layout">
+        <div class="feature-content">
+          <div class="feat-tag"><i class="fas fa-university"></i> Nos Comptes</div>
+          <h2>Un compte adapté<br />à chaque situation<br /><span>de vie</span></h2>
+          <p>Que vous soyez particulier, commerçant, PME ou grande entreprise, GFS dispose du compte qui vous correspond.</p>
+          <div class="account-types">
+            <div class="acc-type">
+              <div class="acc-icon"><i class="fas fa-user"></i></div>
+              <div><strong>Compte Courant Particulier</strong><span>Idéal pour la gestion quotidienne</span></div>
+            </div>
+            <div class="acc-type">
+              <div class="acc-icon"><i class="fas fa-piggy-bank"></i></div>
+              <div><strong>Compte Épargne</strong><span>Faites fructifier votre argent jusqu'à 7,5%/an</span></div>
+            </div>
+            <div class="acc-type">
+              <div class="acc-icon"><i class="fas fa-calendar-alt"></i></div>
+              <div><strong>Dépôt à Terme (DAT)</strong><span>Placement sécurisé à taux garanti</span></div>
+            </div>
+            <div class="acc-type">
+              <div class="acc-icon"><i class="fas fa-building"></i></div>
+              <div><strong>Compte Entreprise</strong><span>Pour PME, GIE, associations et coopératives</span></div>
             </div>
           </div>
-          <div class="acc-info-list">
-            <div class="acc-info-item">
-              <span><i class="fas fa-wallet"></i> Solde disponible</span>
-              <strong class="text-green">485 200 FCFA</strong>
+          <div class="feat-actions">
+            <a href="pages/ouvrir-compte.html" class="btn-feat-primary">Ouvrir un compte</a>
+            <a href="pages/ouvrir-compte.html" class="btn-feat-link">Comparer les comptes <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-mockup account-mockup">
+            <div class="acc-card-visual">
+              <div class="card-chip"></div>
+              <div class="card-logo-text">GFS</div>
+              <div class="card-number">•••• •••• •••• 4782</div>
+              <div class="card-footer">
+                <span>JEAN PIERRE KAMGA</span>
+                <span>12/28</span>
+              </div>
             </div>
-            <div class="acc-info-item">
-              <span><i class="fas fa-chart-line"></i> Intérêts ce mois</span>
-              <strong>+3 120 FCFA</strong>
-            </div>
-            <div class="acc-info-item">
-              <span><i class="fas fa-shield-alt"></i> Compte assuré COBAC</span>
-              <strong class="text-accent">Garanti</strong>
+            <div class="acc-info-list">
+              <div class="acc-info-item">
+                <span><i class="fas fa-wallet"></i> Solde disponible</span>
+                <strong class="text-green">485 200 FCFA</strong>
+              </div>
+              <div class="acc-info-item">
+                <span><i class="fas fa-chart-line"></i> Intérêts ce mois</span>
+                <strong>+3 120 FCFA</strong>
+              </div>
+              <div class="acc-info-item">
+                <span><i class="fas fa-shield-alt"></i> Compte assuré COBAC</span>
+                <strong class="text-accent">Garanti</strong>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -829,100 +802,64 @@
 <!-- ===== CONTACT & AIDE ===== -->
 <section class="contact-section section" id="contact">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-left">
-        <span class="section-badge">Aide & Contact</span>
-        <h2>Nous sommes<br /><span class="text-accent">à votre écoute</span></h2>
-        <p>Notre équipe est disponible pour répondre à toutes vos questions.</p>
-        <div class="contact-cards">
-          <div class="contact-card">
-            <div class="cc-icon"><i class="fas fa-phone-alt"></i></div>
-            <div class="cc-info">
-              <strong>Service Client</strong>
-              <span>+237 6XX XXX XXX</span>
-              <small>Lun–Sam 7h–20h</small>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
-            <div class="cc-info">
-              <strong>WhatsApp</strong>
-              <span>+237 6XX XXX XXX</span>
-              <small>Chat en temps réel</small>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="cc-icon"><i class="fas fa-envelope"></i></div>
-            <div class="cc-info">
-              <strong>Email</strong>
-              <span>contact@gfs-cameroun.com</span>
-              <small>Réponse sous 24h</small>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="cc-icon"><i class="fas fa-mobile-alt"></i></div>
-            <div class="cc-info">
-              <strong>GFS Mobile</strong>
-              <span>Paiements & factures</span>
-              <small>Disponible sur Android</small>
-            </div>
-          </div>
-        </div>
-        <!-- FAQ rapide -->
-        <div class="faq-mini">
-          <h4>Questions fréquentes</h4>
-          <div class="faq-item" onclick="this.classList.toggle('open')">
-            <div class="faq-q">Comment ouvrir un compte GFS ? <i class="fas fa-plus"></i></div>
-            <div class="faq-a">Présentez-vous dans l'une de nos agences avec votre CNI et un justificatif de résidence. L'ouverture prend moins de 30 minutes.</div>
-          </div>
-          <div class="faq-item" onclick="this.classList.toggle('open')">
-            <div class="faq-q">Quel est le montant minimum pour un crédit ? <i class="fas fa-plus"></i></div>
-            <div class="faq-a">Le crédit GFS démarre à partir de 50 000 FCFA pour les particuliers et 500 000 FCFA pour les PME.</div>
-          </div>
-          <div class="faq-item" onclick="this.classList.toggle('open')">
-            <div class="faq-q">Comment télécharger l'application GFS Mobile ? <i class="fas fa-plus"></i></div>
-            <div class="faq-a">Recherchez "GFS Mobile" sur le Google Play Store et installez l'application gratuitement. Disponible pour Android 6.0 et supérieur.</div>
-          </div>
+    <div class="section-header">
+      <span class="section-badge">Aide & Contact</span>
+      <h2>Nous sommes <span class="text-accent">à votre écoute</span></h2>
+      <p>Notre équipe est disponible pour répondre à toutes vos questions.</p>
+    </div>
+    <div class="contact-cards-row">
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-phone-alt"></i></div>
+        <div class="cc-info">
+          <strong>Service Client</strong>
+          <span>+237 6XX XXX XXX</span>
+          <small>Lun–Sam 7h–20h</small>
         </div>
       </div>
-      <div class="contact-right">
-        <div class="contact-form-card">
-          <h3>Envoyez-nous un message</h3>
-          <form id="contactForm">
-            <div class="cf-row">
-              <div class="cf-group">
-                <label>Prénom & Nom *</label>
-                <input type="text" placeholder="Jean Dupont" required />
-              </div>
-              <div class="cf-group">
-                <label>Téléphone</label>
-                <input type="tel" placeholder="+237 6XX XXX XXX" />
-              </div>
-            </div>
-            <div class="cf-group">
-              <label>Email *</label>
-              <input type="email" placeholder="votre@email.com" required />
-            </div>
-            <div class="cf-group">
-              <label>Sujet</label>
-              <select>
-                <option>Demande de renseignements</option>
-                <option>Ouverture de compte</option>
-                <option>Demande de crédit</option>
-                <option>Problème avec mon compte</option>
-                <option>Réclamation</option>
-              </select>
-            </div>
-            <div class="cf-group">
-              <label>Message *</label>
-              <textarea rows="4" placeholder="Décrivez votre demande..." required></textarea>
-            </div>
-            <button type="submit" class="btn-cf-submit">
-              <i class="fas fa-paper-plane"></i> Envoyer le message
-            </button>
-          </form>
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fab fa-whatsapp"></i></div>
+        <div class="cc-info">
+          <strong>WhatsApp</strong>
+          <span>+237 6XX XXX XXX</span>
+          <small>Chat en temps réel</small>
         </div>
       </div>
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-envelope"></i></div>
+        <div class="cc-info">
+          <strong>Email</strong>
+          <span>contact@gfs-cameroun.com</span>
+          <small>Réponse sous 24h</small>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="cc-info">
+          <strong>Nos Agences</strong>
+          <span>12 agences au Cameroun</span>
+          <small>Lun–Sam 7h30–17h</small>
+        </div>
+      </div>
+    </div>
+    <div class="faq-mini contact-faq">
+      <h4>Questions fréquentes</h4>
+      <div class="faq-items-row">
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Comment ouvrir un compte GFS ? <i class="fas fa-plus"></i></div>
+          <div class="faq-a">Présentez-vous dans l'une de nos agences avec votre CNI et un justificatif de résidence. L'ouverture prend moins de 30 minutes.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Quel est le montant minimum pour un crédit ? <i class="fas fa-plus"></i></div>
+          <div class="faq-a">Le crédit GFS démarre à partir de 50 000 FCFA pour les particuliers et 500 000 FCFA pour les PME.</div>
+        </div>
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-q">Comment télécharger l'application GFS Mobile ? <i class="fas fa-plus"></i></div>
+          <div class="faq-a">Recherchez "GFS Mobile" sur le Google Play Store et installez l'application gratuitement. Disponible pour Android 6.0 et supérieur.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="pages/contact.html" class="btn-feat-primary">Nous contacter <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -1026,6 +963,17 @@
 
 <script src="assets/js/main.js"></script>
 <script>
+  // Onglets services
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-pane').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      var pane = document.getElementById('tab-' + btn.dataset.tab);
+      if (pane) pane.classList.add('active');
+    });
+  });
+
   // Widget transfert interactif
   document.querySelectorAll('.ch-item').forEach(function(item) {
     item.addEventListener('click', function() {
