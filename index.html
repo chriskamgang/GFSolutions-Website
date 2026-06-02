@@ -581,220 +581,34 @@
   </div>
 </section>
 
-<!-- ===== SIMULATEUR CRÉDIT ===== -->
-<section class="simulator-section section" id="simulator">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-badge">Outil Gratuit</span>
-      <h2>Simulateur de <span class="text-accent">crédit en ligne</span></h2>
-      <p>Estimez vos mensualités en quelques secondes, sans engagement.</p>
+<!-- ===== BANDE CTA ===== -->
+<section class="cta-band">
+  <div class="container cta-band-inner">
+    <div class="cta-band-item">
+      <div class="cta-band-icon"><i class="fas fa-calculator"></i></div>
+      <div>
+        <strong>Simulateur de crédit</strong>
+        <span>Estimez vos mensualités en ligne</span>
+      </div>
+      <a href="pages/credit.html" class="cta-band-btn">Simuler <i class="fas fa-arrow-right"></i></a>
     </div>
-    <div class="sim-wrapper">
-      <div class="sim-inputs">
-        <div class="sim-row">
-          <div class="sim-field">
-            <label>Montant souhaité</label>
-            <input type="range" id="simAmount" min="50000" max="10000000" step="50000" value="1000000" />
-            <div class="sim-val-display" id="simAmountVal">1 000 000 FCFA</div>
-          </div>
-          <div class="sim-field">
-            <label>Durée de remboursement</label>
-            <input type="range" id="simDuration" min="3" max="60" step="3" value="24" />
-            <div class="sim-val-display" id="simDurationVal">24 mois</div>
-          </div>
-        </div>
-        <div class="sim-field">
-          <label>Type de crédit</label>
-          <div class="credit-type-grid">
-            <label class="credit-type-opt active" data-rate="1.5">
-              <input type="radio" name="creditType" value="1.5" checked />
-              <i class="fas fa-user"></i>
-              <span>Personnel</span>
-              <small>1,5%/mois</small>
-            </label>
-            <label class="credit-type-opt" data-rate="1.2">
-              <input type="radio" name="creditType" value="1.2" />
-              <i class="fas fa-building"></i>
-              <span>PME</span>
-              <small>1,2%/mois</small>
-            </label>
-            <label class="credit-type-opt" data-rate="1.0">
-              <input type="radio" name="creditType" value="1.0" />
-              <i class="fas fa-home"></i>
-              <span>Immobilier</span>
-              <small>1,0%/mois</small>
-            </label>
-            <label class="credit-type-opt" data-rate="2.0">
-              <input type="radio" name="creditType" value="2.0" />
-              <i class="fas fa-bolt"></i>
-              <span>Nano-Crédit</span>
-              <small>2,0%/mois</small>
-            </label>
-          </div>
-        </div>
+    <div class="cta-band-sep"></div>
+    <div class="cta-band-item">
+      <div class="cta-band-icon"><i class="fas fa-info-circle"></i></div>
+      <div>
+        <strong>À propos de GFS</strong>
+        <span>15 ans · 50 000+ clients · Agréé COBAC</span>
       </div>
-      <div class="sim-results">
-        <div class="sim-res-header">Résultat de la simulation</div>
-        <div class="sim-res-main">
-          <div class="sim-mensualite">
-            <span>Mensualité estimée</span>
-            <strong id="resMensualite">–</strong>
-          </div>
-        </div>
-        <div class="sim-res-details">
-          <div class="sim-res-row"><span>Montant emprunté</span><strong id="resMontant">–</strong></div>
-          <div class="sim-res-row"><span>Durée</span><strong id="resDuree">–</strong></div>
-          <div class="sim-res-row"><span>Total des intérêts</span><strong id="resInterets">–</strong></div>
-          <div class="sim-res-row total"><span>Coût total du crédit</span><strong id="resTotal">–</strong></div>
-        </div>
-        <a href="pages/credit.html" class="btn-sim-apply">
-          <i class="fas fa-paper-plane"></i> Faire une demande de crédit
-        </a>
-        <p class="sim-disclaimer">* Simulation non contractuelle. Taux indicatifs, sous réserve d'acceptation du dossier.</p>
-      </div>
+      <a href="pages/a-propos.html" class="cta-band-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
     </div>
-  </div>
-</section>
-
-<!-- ===== A PROPOS DE NOUS ===== -->
-<section class="about-section section" id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-visuals">
-        <div class="about-img-big" style="background:linear-gradient(135deg,#1B2A4A 0%,#2d4a8a 100%)">
-          <div class="about-overlay-text">
-            <strong>Agréé COBAC</strong>
-            <span>Licence EMF N° YYYY/XXX</span>
-          </div>
-        </div>
-        <div class="about-img-small" style="background:linear-gradient(135deg,#F5A623 0%,#e8940f 100%)">
-          <div class="about-years"><span>15</span><small>ans de<br/>confiance</small></div>
-        </div>
-        <div class="about-kpi-float">
-          <div class="kpi-f"><span class="kpi-num">50 000+</span><span class="kpi-lab">Clients actifs</span></div>
-          <div class="kpi-f"><span class="kpi-num">12</span><span class="kpi-lab">Agences</span></div>
-        </div>
+    <div class="cta-band-sep"></div>
+    <div class="cta-band-item">
+      <div class="cta-band-icon"><i class="fas fa-newspaper"></i></div>
+      <div>
+        <strong>Actualités GFS</strong>
+        <span>Nouveautés, offres et partenariats</span>
       </div>
-      <div class="about-text">
-        <span class="section-badge">A Propos de Nous</span>
-        <h2>La microfinance au service<br />des <span class="text-accent">Camerounais</span></h2>
-        <p class="about-lead">Global Financial Solution (GFS) est une institution de microfinance agréée COBAC, fondée pour rendre les services financiers accessibles à chaque Camerounais, des centres urbains aux zones rurales.</p>
-        <p>Depuis notre création, nous avons accompagné des dizaines de milliers de familles et d'entreprises : construction de maison, démarrage d'activité, scolarisation, préparation de retraite.</p>
-        <div class="about-pillars">
-          <div class="pillar">
-            <div class="pillar-icon"><i class="fas fa-shield-alt"></i></div>
-            <h4>Sécurité</h4>
-            <p>Agréée COBAC/CEMAC. Vos dépôts sont protégés et garantis.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon"><i class="fas fa-heart"></i></div>
-            <h4>Proximité</h4>
-            <p>Conseillers dédiés dans chacune de nos 12 agences.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon"><i class="fas fa-lightbulb"></i></div>
-            <h4>Innovation</h4>
-            <p>Solutions digitales adaptées au marché camerounais.</p>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon"><i class="fas fa-users"></i></div>
-            <h4>Inclusion</h4>
-            <p>Finance accessible à tous, y compris les non-bancarisés.</p>
-          </div>
-        </div>
-        <a href="pages/a-propos.html" class="btn-feat-primary">En savoir plus sur GFS</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CHIFFRES CLÉS ===== -->
-<section class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-icon"><i class="fas fa-users"></i></div>
-        <div class="stat-number">50 000<span>+</span></div>
-        <div class="stat-label">Clients actifs</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon"><i class="fas fa-building"></i></div>
-        <div class="stat-number">12</div>
-        <div class="stat-label">Agences au Cameroun</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon"><i class="fas fa-hand-holding-usd"></i></div>
-        <div class="stat-number">2 Mds</div>
-        <div class="stat-label">FCFA de crédits accordés</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="stat-number">45<span>+</span></div>
-        <div class="stat-label">GAB & Points retrait</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-icon"><i class="fas fa-award"></i></div>
-        <div class="stat-number">15</div>
-        <div class="stat-label">Ans d'expérience</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ACTUALITÉS ===== -->
-<section class="news-section section" id="news">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-badge">Actualités</span>
-      <h2>Nos dernières <span class="text-accent">nouvelles</span></h2>
-    </div>
-    <div class="news-grid">
-      <article class="news-card big-card">
-        <div class="news-thumb" style="background:linear-gradient(135deg,#1B2A4A,#2d4a8a)">
-          <span class="news-tag">Innovation</span>
-        </div>
-        <div class="news-body">
-          <span class="news-date"><i class="fas fa-calendar-alt"></i> 20 Mai 2026</span>
-          <h3>GFS lance son application mobile Android avec authentification biométrique</h3>
-          <p>Notre nouvelle application permet d'effectuer des transactions sécurisées depuis n'importe où au Cameroun, même avec une connexion limitée.</p>
-          <a href="pages/actualites.html" class="news-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </article>
-      <div class="news-side">
-        <article class="news-card small-card">
-          <div class="news-thumb sm" style="background:linear-gradient(135deg,#F5A623,#e8940f)">
-            <span class="news-tag">Crédit</span>
-          </div>
-          <div class="news-body">
-            <span class="news-date"><i class="fas fa-calendar-alt"></i> 15 Mai 2026</span>
-            <h3>Crédit Scolarité : 0% d'intérêts les 3 premiers mois</h3>
-            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </article>
-        <article class="news-card small-card">
-          <div class="news-thumb sm" style="background:linear-gradient(135deg,#27ae60,#1e8449)">
-            <span class="news-tag">Réseau</span>
-          </div>
-          <div class="news-body">
-            <span class="news-date"><i class="fas fa-calendar-alt"></i> 8 Mai 2026</span>
-            <h3>GFS ouvre sa 12ème agence à Ngaoundéré</h3>
-            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </article>
-        <article class="news-card small-card">
-          <div class="news-thumb sm" style="background:linear-gradient(135deg,#8e44ad,#6c3483)">
-            <span class="news-tag">Partenariat</span>
-          </div>
-          <div class="news-body">
-            <span class="news-date"><i class="fas fa-calendar-alt"></i> 1 Mai 2026</span>
-            <h3>Partenariat GFS – MTN Mobile Money : transferts sans frais</h3>
-            <a href="pages/actualites.html" class="news-more">Lire <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </article>
-      </div>
-    </div>
-    <div class="news-cta">
-      <a href="pages/actualites.html" class="btn-outline-dark">Toutes les actualités <i class="fas fa-arrow-right"></i></a>
+      <a href="pages/actualites.html" class="cta-band-btn">Lire <i class="fas fa-arrow-right"></i></a>
     </div>
   </div>
 </section>
